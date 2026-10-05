@@ -3,31 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Urbanista Bistro Dakar | Restaurant & Brunch au Point E</title>
-  <meta name="description" content="Découvrez Urbanista Bistro Dakar au Point E. Brunchs gourmands, bistronomie raffinée, cocktails signatures et vins d'exception." />
-  
+  <title>Urbanista Bistro Dakar | Brunch, Resto & Cocktails au Point E</title>
+  <meta name="description" content="Découvrez Urbanista Bistro Dakar au Point E : brunchs gourmands, déjeuners raffinés, dîners et cocktails signature dans un cadre chic et végétal." />
+
   <!-- Polices Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome pour les icônes -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-cream: #F9F6F0;
+      --bg-cream: #FAF7F2;
       --bg-card: #FFFFFF;
-      --bg-accent: #EFE9DD;
-      --primary-green: #244134;
-      --secondary-green: #375949;
-      --gold: #C09A58;
-      --text-dark: #1F2421;
-      --text-muted: #646E68;
-      --border-color: #E2DBD0;
-      --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
-      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --primary-green: #233D33;
+      --secondary-green: #375A4C;
+      --accent-gold: #C59B5F;
+      --accent-gold-light: #E8D8B8;
+      --text-dark: #1E2421;
+      --text-muted: #6B726F;
+      --border-color: #E6DFD5;
+      --font-title: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Montserrat', -apple-system, sans-serif;
+      --radius: 14px;
+      --shadow-soft: 0 10px 30px rgba(35, 61, 51, 0.06);
     }
 
     * {
@@ -38,14 +36,11 @@
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
       background-color: var(--bg-cream);
       color: var(--text-dark);
+      font-family: var(--font-body);
       line-height: 1.6;
-    }
-
-    h1, h2, h3, h4, .font-serif {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -53,18 +48,17 @@
       color: inherit;
     }
 
-    /* BARRE DU HAUT / NAVIGATION */
+    /* HEADER & NAV */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background-color: rgba(249, 246, 240, 0.95);
+      background: rgba(250, 247, 242, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-color);
-      transition: var(--transition);
     }
 
-    .nav-container {
+    .navbar {
       max-width: 1200px;
       margin: 0 auto;
       padding: 1rem 1.5rem;
@@ -76,162 +70,778 @@
     .brand {
       display: flex;
       flex-direction: column;
+      text-decoration: none;
     }
 
     .brand-title {
+      font-family: var(--font-title);
       font-size: 1.8rem;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       color: var(--primary-green);
       text-transform: uppercase;
-      line-height: 1.1;
+      line-height: 1;
     }
 
     .brand-sub {
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      color: var(--gold);
-      font-weight: 600;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
       text-transform: uppercase;
+      color: var(--accent-gold);
+      font-weight: 600;
+      margin-top: 4px;
     }
 
     .nav-links {
       display: flex;
       gap: 1.8rem;
       align-items: center;
+      list-style: none;
     }
 
     .nav-links a {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
-      color: var(--text-dark);
-      transition: var(--transition);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      color: var(--text-dark);
+      transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
-      color: var(--gold);
+      color: var(--accent-gold);
     }
 
-    .btn-contact {
-      background-color: var(--primary-green);
+    .btn-nav {
+      background: var(--primary-green);
       color: #fff !important;
-      padding: 0.6rem 1.3rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: var(--transition);
+      font-size: 0.8rem !important;
+      transition: background 0.3s ease, transform 0.2s ease !important;
     }
 
-    .btn-contact:hover {
-      background-color: var(--secondary-green);
+    .btn-nav:hover {
+      background: var(--accent-gold) !important;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(36, 65, 52, 0.25);
     }
 
-    /* HERO BANNER */
+    /* HERO */
     .hero {
       position: relative;
-      background: linear-gradient(rgba(26, 42, 34, 0.78), rgba(26, 42, 34, 0.88)), 
-                  url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      color: white;
+      padding: 5rem 1.5rem 4rem;
       text-align: center;
-      padding: 7rem 1.5rem 6rem;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .hero-badge {
+    .badge-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 0.4rem 1.2rem;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
+      gap: 6px;
+      padding: 0.35rem 1rem;
+      background: var(--accent-gold-light);
+      color: var(--primary-green);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
       letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
+      font-family: var(--font-title);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 600;
       line-height: 1.15;
+      color: var(--primary-green);
+      margin-bottom: 1.2rem;
     }
 
     .hero p {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
+      color: var(--text-muted);
       max-width: 650px;
       margin: 0 auto 2.2rem;
       font-weight: 300;
-      color: #E2DBD0;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
       justify-content: center;
-      gap: 1.2rem;
+      gap: 1rem;
       flex-wrap: wrap;
     }
 
     .btn-primary {
-      background-color: var(--gold);
-      color: white;
+      background: var(--primary-green);
+      color: #fff;
       padding: 0.9rem 2rem;
       border-radius: 50px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      font-weight: 500;
       font-size: 0.85rem;
-      transition: var(--transition);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .btn-primary:hover {
-      background-color: #A98344;
+      background: var(--accent-gold);
       transform: translateY(-2px);
     }
 
     .btn-secondary {
-      background-color: transparent;
-      color: white;
-      border: 2px solid white;
-      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--primary-green);
+      border: 1.5px solid var(--primary-green);
+      padding: 0.85rem 1.8rem;
       border-radius: 50px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      font-weight: 500;
       font-size: 0.85rem;
-      transition: var(--transition);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
     }
 
     .btn-secondary:hover {
-      background-color: white;
+      background: var(--primary-green);
+      color: #fff;
+    }
+
+    /* BADGES GOOGLE & HIGHLIGHTS */
+    .highlights {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .stars {
+      color: #FFB800;
+      letter-spacing: 2px;
+    }
+
+    /* MENU SECTION */
+    .menu-section {
+      padding: 4.5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent-gold);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 3rem);
       color: var(--primary-green);
-      transform: translateY(-2px);
     }
 
-    /* SECTION A PROPOS & INFOS RAPIDES */
-    .features {
-      max-width: 1100px;
-      margin: -2.5rem auto 3rem;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 10;
+    /* CATEGORIES TABS */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
     }
 
-    .features-grid {
+    .tab-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+      background: var(--primary-green);
+      color: #fff;
+      border-color: var(--primary-green);
+    }
+
+    /* MENU GRID */
+    .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 1.5rem;
     }
 
-    .feature-card {
+    .menu-item {
       background: var(--bg-card);
       padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px rgba(35, 61, 51, 0.09);
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .item-title {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-green);
+    }
+
+    .item-price {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--accent-gold);
+      white-space: nowrap;
+    }
+
+    .item-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-top: 0.3rem;
+    }
+
+    /* INFOS & CONTACT */
+    .info-section {
+      background: var(--primary-green);
+      color: #FAF7F2;
+      padding: 4.5rem 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .info-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .info-block h3 {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent-gold-light);
+    }
+
+    .info-block p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 0.6rem;
+    }
+
+    .info-block strong {
+      color: #fff;
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      padding: 0.85rem 1.5rem;
+      border-radius: 50px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+
+    .btn-whatsapp:hover {
+      opacity: 0.9;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #172922;
+      color: #8C9993;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding: 3.5rem 1rem 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="brand">
+        <span class="brand-title">Urbanista</span>
+        <span class="brand-sub">Bistro Dakar</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#menu">Le Menu</a></li>
+        <li><a href="#infos">Horaires & Accès</a></li>
+        <li><a href="tel:+221338690600" class="btn-nav">Appeler</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="badge-pill">Point E · Rue 7, Dakar</div>
+    <h1>Brunch Gourmand, Cuisine Raffinée & Cocktails</h1>
+    <p>Une parenthèse chaleureuse au Point E pour savourer nos brunchs signatures, nos viandes et poissons d'exception, ainsi qu'une carte bar complète.</p>
+    
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">Consulter le Menu</a>
+      <a href="https://wa.me/221338690600?text=Bonjour%20Urbanista%20Bistro%20Dakar,%20je%20souhaite%20r%C3%A9server%20une%20table" target="_blank" class="btn-secondary">Réserver une table</a>
+    </div>
+
+    <div class="highlights">
+      <div class="highlight-item">
+        <span class="stars">★★★★★</span>
+        <span><strong>4.6</strong> / 5 (365+ avis Google)</span>
+      </div>
+      <div class="highlight-item">
+        <span>🕒 Ouvert tous les jours · Ferme à 23:00</span>
+      </div>
+      <div class="highlight-item">
+        <span>🍹 Happy Hour & Ambiance Matchs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section id="menu" class="menu-section">
+    <div class="section-header">
+      <span class="section-subtitle">Saveurs & Fraîcheur</span>
+      <h2 class="section-title">La Carte du Bistro</h2>
+    </div>
+
+    <!-- Filtres des catégories -->
+    <div class="category-tabs">
+      <button class="tab-btn active" onclick="filterMenu('all')">Tout</button>
+      <button class="tab-btn" onclick="filterMenu('brunch')">Brunch & Matin</button>
+      <button class="tab-btn" onclick="filterMenu('starters')">Entrées & Salades</button>
+      <button class="tab-btn" onclick="filterMenu('platters')">Burgers & Platters</button>
+      <button class="tab-btn" onclick="filterMenu('mains')">Plats Signatures</button>
+      <button class="tab-btn" onclick="filterMenu('pizza-pasta')">Pizzas, Pinsas & Pâtes</button>
+      <button class="tab-btn" onclick="filterMenu('desserts')">Desserts</button>
+      <button class="tab-btn" onclick="filterMenu('drinks')">Boissons & Bar</button>
+    </div>
+
+    <!-- Items du menu -->
+    <div class="menu-grid" id="menuGrid">
+
+      <!-- BRUNCH -->
+      <div class="menu-item" data-category="brunch">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Formule Urbanista</h3>
+            <span class="item-price">14 500 F</span>
+          </div>
+          <p class="item-desc">2 œufs au choix, 2 pancakes, 3 crispy poulet, cream cheese maison aux herbes, chips maison, viennoiserie, confiture, salade, fruit, jus pressé ou local, boisson chaude.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="brunch">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Formule Classique</h3>
+            <span class="item-price">10 500 F</span>
+          </div>
+          <p class="item-desc">3 œufs brouillés ou au plat, bacon de dinde grillé halal ou saucisses de poulet, salade, jus pressé ou local, boisson chaude.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="brunch">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Healthy and Veggie</h3>
+            <span class="item-price">14 000 F</span>
+          </div>
+          <p class="item-desc">Avocado pain au levain & feta, bowl de quinoa, légumes rôtis, houmous, 2 pancakes farine complète, pot de chia & coulis mangue, smoothie vert, boisson chaude.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="brunch">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Formule Dreamy</h3>
+            <span class="item-price">15 000 F</span>
+          </div>
+          <p class="item-desc">Saumon fumé, 3 œufs brouillés, cream cheese maison aux herbes, chips maison, pain au levain, betteraves bouillies, salade, beurre, jus pressé/local, boisson chaude.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="brunch">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Formule Oriental</h3>
+            <span class="item-price">15 000 F</span>
+          </div>
+          <p class="item-desc">Assiette de foul, houmous, 2 œufs au plat, 2 tranches halloum, labneh, 2 mini manaiches zaatar, légumes, confiture, beurre, fruit, boisson chaude.</p>
+        </div>
+      </div>
+
+      <!-- ENTRÉES & SALADES -->
+      <div class="menu-item" data-category="starters">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Go Big Combo</h3>
+            <span class="item-price">17 500 F</span>
+          </div>
+          <p class="item-desc">Assiette mixte de BBQ wings, mozzarella sticks, calamars sticks, crispy poulet et frites, servi avec notre sauce signature urbanista.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="starters">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Gaufre Salée</h3>
+            <span class="item-price">8 000 F</span>
+          </div>
+          <p class="item-desc">Poulet pané, cheddar, salade, tomate, oignons caramélisés, cornichons et œuf au plat.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="starters">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Salade Burrata</h3>
+            <span class="item-price">10 500 F</span>
+          </div>
+          <p class="item-desc">Fromage burrata frais, concombre, tomates cerises, croûtons croustillants et sauce pesto maison.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="starters">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Salade Quinoa</h3>
+            <span class="item-price">12 500 F</span>
+          </div>
+          <p class="item-desc">Crevettes, tomates, concombres, maïs doux, oignon vert, persil, pommes et coriandre.</p>
+        </div>
+      </div>
+
+      <!-- BURGERS & PLATTERS -->
+      <div class="menu-item" data-category="platters">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Burger T</h3>
+            <span class="item-price">12 500 F</span>
+          </div>
+          <p class="item-desc">Angus beef steak, sauce TK, oignons caramélisés, fromage spécial, cornichons maison, laitue, tomate. Servi avec frites et salade.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="platters">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Philly Steak Sandwich</h3>
+            <span class="item-price">11 500 F</span>
+          </div>
+          <p class="item-desc">200g d'émincé de filet de bœuf tendre, tomates fraîches, champignons sautés, oignons et fromage fondu avec sauce spéciale maison.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="platters">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Poulet Royal Burger</h3>
+            <span class="item-price">11 500 F</span>
+          </div>
+          <p class="item-desc">150g de filet de poulet grillé, galette de mozzarella panée, laitue, tomate fraîche et sauce spéciale maison. Servi avec frites.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="platters">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Smash Burger</h3>
+            <span class="item-price">6 500 F</span>
+          </div>
+          <p class="item-desc">100g de viande hachée de bœuf smashée, tomates fraîches et salade. Servi avec des frites croustillantes.</p>
+        </div>
+      </div>
+
+      <!-- MAINS -->
+      <div class="menu-item" data-category="mains">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Médaillon Urbanista</h3>
+            <span class="item-price">24 000 F</span>
+          </div>
+          <p class="item-desc">300g de filet de bœuf grillé, tendre et savoureux, proposé en cuisson saignante ou à point. Accompagnement au choix.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="mains">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Thiof Entier Grillé</h3>
+            <span class="item-price">14 500 F</span>
+          </div>
+          <p class="item-desc">Thiof frais aromatisé avec notre marinade spéciale. Choix d'accompagnement : riz blanc, légumes sautés ou frites maison.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="mains">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Bœuf Stroganoff</h3>
+            <span class="item-price">13 000 F</span>
+          </div>
+          <p class="item-desc">220g d'émincé de filet de bœuf, champignons sauce rosée, accompagné de riz basmati parfumé.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="mains">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Pavé de Saumon</h3>
+            <span class="item-price">17 500 F</span>
+          </div>
+          <p class="item-desc">Pavé de saumon délicatement poêlé, légumes sautés de saison et beurre blanc au citron.</p>
+        </div>
+      </div>
+
+      <!-- PIZZAS & PASTAS -->
+      <div class="menu-item" data-category="pizza-pasta">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Pinsa Champignons & Truffe</h3>
+            <span class="item-price">12 500 / 15 500 F</span>
+          </div>
+          <p class="item-desc">Pâte pinsa croustillante et légère, crème de truffe, champignons frais et mozzarella fior di latte.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="pizza-pasta">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Tagliatelles aux Truffes</h3>
+            <span class="item-price">15 500 F</span>
+          </div>
+          <p class="item-desc">Tagliatelles avec une sauce crémeuse à base de pâte de truffe délicate et brisures de noix.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="pizza-pasta">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Pinsa Burrata</h3>
+            <span class="item-price">11 500 / 14 500 F</span>
+          </div>
+          <p class="item-desc">Sauce tomate maison, mozzarella, burrata crémeuse et touche de sauce pesto.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="pizza-pasta">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Risotto aux Gambas</h3>
+            <span class="item-price">17 500 F</span>
+          </div>
+          <p class="item-desc">Risotto crémeux lié au parmesan et garni de gambas fraîches sautées à l'ail et aux herbes.</p>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div class="menu-item" data-category="desserts">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Brioche Perdue</h3>
+            <span class="item-price">7 000 F</span>
+          </div>
+          <p class="item-desc">Brioche dodue maison, fruits frais de saison et fruits rouges, boule de glace vanille, sauce caramel maison.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="desserts">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Fondant au Chocolat</h3>
+            <span class="item-price">6 500 F</span>
+          </div>
+          <p class="item-desc">Cœur coulant au chocolat noir pur, préparé minute et servi avec une boule de glace vanille.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="desserts">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Gaufre Very Bueno</h3>
+            <span class="item-price">7 000 F</span>
+          </div>
+          <p class="item-desc">Crème de noisette, morceaux de Kinder Bueno, crème chantilly maison et glace vanille.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="desserts">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Le Fameux Banana Bread</h3>
+            <span class="item-price">2 000 F</span>
+          </div>
+          <p class="item-desc">Tranche moelleuse maison aux bananes mûres et épices douces.</p>
+        </div>
+      </div>
+
+      <!-- DRINKS & BAR -->
+      <div class="menu-item" data-category="drinks">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Pornstar Martini</h3>
+            <span class="item-price">7 000 F</span>
+          </div>
+          <p class="item-desc">Vodka, sirop de vanille, purée de fruit de la passion et son shooter de prosecco rafraîchissant.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="drinks">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Espresso Martini</h3>
+            <span class="item-price">6 000 F</span>
+          </div>
+          <p class="item-desc">Vodka premium et espresso 100% bio fraîchement préparé.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="drinks">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Smoothie Urban Passion</h3>
+            <span class="item-price">4 500 F</span>
+          </div>
+          <p class="item-desc">Bouye traditionnel (pain de singe) et fruit de la passion acidulé.</p>
+        </div>
+      </div>
+
+      <div class="menu-item" data-category="drinks">
+        <div>
+          <div class="item-header">
+            <h3 class="item-title">Ube Latte Tendance</h3>
+            <span class="item-price">4 000 F</span>
+          </div>
+          <p class="item-desc">Boisson signature à base de poudre d'igname violette et lait velouté (chaud ou glacé).</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INFOS & RESERVATION -->
+  <section id="infos" class="info-section">
+    <div class="info-container">
+      <div class="info-block">
+        <h3>Urbanista Bistro</h3>
+        <p><strong>Adresse :</strong> Rue 7, Quartier Point E, Dakar</p>
+        <p><strong>Horaires :</strong> Ouvert 7j/7 · Fermeture à 23:00</p>
+        <p><strong>Gamme :</strong> 8 000 – 20 000 F CFA par personne</p>
+        <p><strong>Contact :</strong> +221 33 869 06 00</p>
+      </div>
+
+      <div class="info-block">
+        <h3>Réservations</h3>
+        <p>Pour vos déjeuners d'affaires, brunchs du week-end ou soirées cocktails entre amis, contactez-nous directement :</p>
+        <div class="footer-actions">
+          <a href="tel:+221338690600" class="btn-primary" style="background:#fff; color:var(--primary-green); justify-content:center;">
+            📞 Appeler le +221 33 869 06 00
+          </a>
+          <a href="https://wa.me/221338690600?text=Bonjour%20Urbanista%20Bistro%20Dakar,%20je%20souhaite%20r%C3%A9server%20une%20table" target="_blank" class="btn-whatsapp">
+            💬 Réserver via WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Urbanista Bistro Dakar · Tous droits réservés.</p>
+  </footer>
+
+  <!-- SCRIPT FILTRAGE ONGLET -->
+  <script>
+    function filterMenu(category) {
+      // Gestion des boutons actifs
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Filtrage des éléments
+      const items = document.querySelectorAll('.menu-item');
+      items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
