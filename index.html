@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Urbanista Bistro Dakar | Brunch, Cuisine Raffinée & Cocktails</title>
-  <meta name="description" content="Urbanista Bistro Dakar au Point E. Brunchs signatures, cuisine bistronomique, pâtisseries, carte bar et commande à distance." />
+  <title>Urbanista Bistro Dakar | Point E & Plateau | Brunch, Cuisine Raffinée & Cocktails</title>
+  <meta name="description" content="Urbanista Bistro Dakar au Point E et au Plateau. Brunchs signatures, cuisine bistronomique, pâtisseries, carte bar et commande à distance." />
 
-  <!-- Open Graph pour aperçu soigné sur WhatsApp -->
-  <meta property="og:title" content="Urbanista Bistro Dakar | Point E" />
-  <meta property="og:description" content="Brunchs signatures, cuisine raffinée et cocktails au Point E. Découvrez notre menu." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Urbanista Bistro Dakar | Point E & Plateau" />
+  <meta property="og:description" content="Brunchs signatures, cuisine raffinée et cocktails au Point E et au Plateau. Découvrez notre carte." />
   <meta property="og:image" content="urbanista-interieur.jpg" />
   <meta property="og:type" content="website" />
 
@@ -653,9 +653,7 @@
       font-size: 0.8rem;
     }
 
-    /* =========================================
-       SECTION AVIS CLIENTS GOOGLE REVIEWS
-    ========================================= */
+    /* REVIEWS SECTION */
     .reviews-section {
       padding: 6rem 1.5rem;
       background: var(--dark-bg);
@@ -786,7 +784,6 @@
       color: var(--text-muted);
       line-height: 1.7;
       margin-bottom: 1.5rem;
-      position: relative;
     }
 
     .review-stars {
@@ -1057,7 +1054,7 @@
     }
 
     /* =========================================
-       PAGE 3 : COMMANDE AVEC TICKET EN DIRECT
+       PAGE 3 : COMMANDE AVEC CHOIX DU RESTAURANT
     ========================================= */
     .order-page {
       padding: 3.5rem 1.5rem 6rem;
@@ -1196,6 +1193,86 @@
       font-family: var(--font-serif);
     }
 
+    /* SÉLECTEUR DE RESTAURANT (POINT E vs PLATEAU) */
+    .branch-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .branch-card {
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: var(--dark-surface);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .branch-card.selected {
+      border-color: var(--gold-wave);
+      background: rgba(168, 104, 102, 0.25);
+    }
+
+    .branch-card input[type="radio"] {
+      display: none;
+    }
+
+    .branch-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      font-family: var(--font-serif);
+      letter-spacing: 1px;
+    }
+
+    .branch-sub {
+      font-size: 0.75rem;
+      color: var(--gold-wave);
+      margin-top: 0.2rem;
+    }
+
+    .mode-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .mode-card {
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: var(--dark-surface);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .mode-card.selected {
+      border-color: var(--rose-terre);
+      background: rgba(168, 104, 102, 0.2);
+    }
+
+    .mode-card input[type="radio"] {
+      display: none;
+    }
+
+    .mode-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+      color: #fff;
+    }
+
+    .mode-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
     .pill-select-group {
       display: flex;
       gap: 0.6rem;
@@ -1251,45 +1328,6 @@
       border-color: var(--rose-terre);
     }
 
-    .mode-selector {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .mode-card {
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      background: var(--dark-surface);
-      border-radius: 12px;
-      padding: 1.2rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .mode-card.selected {
-      border-color: var(--rose-terre);
-      background: rgba(168, 104, 102, 0.2);
-    }
-
-    .mode-card input[type="radio"] {
-      display: none;
-    }
-
-    .mode-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-top: 0.3rem;
-      color: #fff;
-    }
-
-    .mode-desc {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
-    }
-
     .order-submit-btn {
       width: 100%;
       background: var(--rose-terre);
@@ -1316,7 +1354,7 @@
       transform: translateY(-2px);
     }
 
-    /* BARRE FLOTTANTE PANIER / SÉLECTION */
+    /* BARRE FLOTTANTE PANIER */
     .floating-summary-bar {
       position: fixed;
       bottom: 25px;
@@ -1360,7 +1398,7 @@
       white-space: nowrap;
     }
 
-    /* FOOTER & CONTACT */
+    /* FOOTER & LES 2 ADRESSES */
     .contact-section {
       background: #0B0909;
       padding: 5rem 1.5rem 3rem;
@@ -1368,11 +1406,11 @@
     }
 
     .contact-container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 3rem;
+      grid-template-columns: 1fr 1.1fr 1.1fr;
+      gap: 2.5rem;
     }
 
     .contact-brand-circle {
@@ -1391,17 +1429,19 @@
 
     .contact-col h5 {
       font-family: var(--font-serif);
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: var(--gold-wave);
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(168, 104, 102, 0.3);
     }
 
     .contact-col p, .contact-col a {
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
       display: block;
     }
 
@@ -1412,13 +1452,13 @@
     .gps-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(168, 104, 102, 0.18);
+      gap: 6px;
+      background: rgba(168, 104, 102, 0.2);
       border: 1px solid var(--rose-terre);
       color: #fff !important;
-      padding: 0.55rem 1.1rem;
+      padding: 0.45rem 1rem;
       border-radius: 30px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       margin-top: 0.6rem;
       transition: all 0.3s ease;
     }
@@ -1438,7 +1478,7 @@
       color: #777;
     }
 
-    /* BOUTON FLOTTANT WHATSAPP (Mobile officiel 77 844 62 06) */
+    /* BOUTON FLOTTANT WHATSAPP (Ligne générale d'Urbanista Dakar) */
     .floating-wa-btn {
       position: fixed;
       bottom: 25px;
@@ -1469,9 +1509,17 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 850px) {
-      .about-container,
+    @media (max-width: 950px) {
       .contact-container {
+        grid-template-columns: 1fr;
+      }
+      .branch-selector {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .about-container {
         grid-template-columns: 1fr;
       }
       .nav-links {
@@ -1525,7 +1573,7 @@
     <div class="navbar">
       <div class="nav-brand" onclick="switchTab('accueil')">
         <span class="title">Urbanista</span>
-        <span class="sub">Bistro Dakar</span>
+        <span class="sub">Point E & Plateau</span>
       </div>
 
       <ul class="nav-links">
@@ -1573,7 +1621,7 @@
 
         <div class="hero-logo-badge reveal delay-1">UB</div>
         <h1 class="hero-title reveal delay-2">Savourez L'Excellence</h1>
-        <p class="hero-subtitle reveal delay-2">Une expérience bistronomique raffinée au Point E mêlant brunchs gourmands, déjeuners savoureux et cocktails signatures.</p>
+        <p class="hero-subtitle reveal delay-2">Une expérience bistronomique raffinée au Point E et au Plateau mêlant brunchs gourmands, déjeuners savoureux et cocktails signatures.</p>
         
         <div class="hero-btn-group reveal delay-3">
           <button onclick="switchTab('menu')" class="btn-main shimmer-btn">Découvrir le Menu</button>
@@ -1606,31 +1654,28 @@
         <div class="about-image-wrap reveal-zoom">
           <!-- Photo réelle Urbanista Bistro Dakar -->
           <img src="urbanista-interieur.jpg" alt="Urbanista Bistro Dakar - Salle et Décoration Point E" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'" />
-          <div class="about-badge-center">Le Bistro Point E</div>
+          <div class="about-badge-center">Nos Adresses Dakar</div>
         </div>
         <div class="about-text">
           <h2 class="reveal">À Propos</h2>
-          <p class="reveal delay-1 drop-cap"><strong>Bienvenue chez Urbanista Bistro Dakar</strong>, l'adresse du Point E où convivialité, design chaleureux aux tonalités douces et gastronomie moderne se rencontrent.</p>
+          <p class="reveal delay-1 drop-cap"><strong>Bienvenue chez Urbanista Bistro Dakar</strong>, présent au cœur du Point E et au Plateau où convivialité, design chaleureux aux tonalités douces et gastronomie moderne se rencontrent.</p>
           <p class="reveal delay-2">Profitez de nos brunchs complets servis 7j/7, de nos pinsas légères à la truffe, de viandes tendres et d'un bar à cocktails dynamique.</p>
           
           <div class="about-features reveal delay-3">
             <div class="feature-pill">⭐ 4.6/5 sur Google</div>
-            <div class="feature-pill">📍 Rue 7, Point E</div>
+            <div class="feature-pill">📍 Point E & Plateau</div>
             <div class="feature-pill">🕒 Ouvert jusqu'à 23:00</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========================================================
-         NOUVELLE SECTION : AVIS CLIENTS & GOOGLE REVIEWS VIVANTS
-    ======================================================== -->
+    <!-- SECTION AVIS CLIENTS -->
     <section class="reviews-section">
       <div class="reviews-container">
         <span class="section-badge reveal" style="font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold-wave); font-weight:600; display:block; margin-bottom:0.5rem;">Témoignages & Expériences</span>
         <h2 class="section-title reveal delay-1" style="margin-bottom: 2rem;">L'Avis de nos Clients</h2>
 
-        <!-- Score global Google Maps -->
         <div class="reviews-score-card reveal delay-2">
           <div class="google-badge-brand">
             <span class="google-g-logo">G</span>
@@ -1645,9 +1690,7 @@
           </div>
         </div>
 
-        <!-- Les 3 vrais avis clients Google Maps d'Urbanista Dakar -->
         <div class="reviews-grid">
-          <!-- Vrai avis 1 : Accueil, Ambiance & Service -->
           <div class="review-card reveal delay-1">
             <div>
               <div class="review-header">
@@ -1664,7 +1707,6 @@
             <div class="review-stars">★★★★★</div>
           </div>
 
-          <!-- Vrai avis 2 : Boissons & Formules Brunch -->
           <div class="review-card reveal delay-2">
             <div>
               <div class="review-header">
@@ -1681,7 +1723,6 @@
             <div class="review-stars">★★★★★</div>
           </div>
 
-          <!-- Vrai avis 3 : Options Végétales & Cadre Musical -->
           <div class="review-card reveal delay-3">
             <div>
               <div class="review-header">
@@ -1699,7 +1740,6 @@
           </div>
         </div>
 
-        <!-- Bouton d'action directe vers Google Maps pour laisser un avis -->
         <div class="reveal delay-3">
           <a href="https://search.google.com/local/writereview?placeid=ChIJwWv3V1wzvgURv3Y7pB7s63k" target="_blank" class="leave-review-btn">
             <span>★ Laisser un avis sur Google</span>
@@ -1711,7 +1751,7 @@
     <!-- SECTION VIBES & INSTAGRAM -->
     <section class="insta-vibes-section">
       <h2 class="section-title reveal" style="font-size:2rem; margin-bottom:0.5rem;">L'Ambiance Urbanista</h2>
-      <p class="reveal delay-1" style="color:var(--text-muted); font-size:0.85rem; letter-spacing:2px; text-transform:uppercase;">Instants capturés au cœur du Point E</p>
+      <p class="reveal delay-1" style="color:var(--text-muted); font-size:0.85rem; letter-spacing:2px; text-transform:uppercase;">Instants capturés à Dakar</p>
       
       <div class="insta-grid">
         <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-item reveal delay-1">
@@ -1735,7 +1775,7 @@
   </div>
 
   <!-- ========================================================
-       ONGLET 2 : LE MENU AVEC SPOTLIGHT ET DOTTED LEADERS
+       ONGLET 2 : LE MENU
   ======================================================== -->
   <div id="tab-menu" class="tab-view">
     <div class="menu-page">
@@ -2006,15 +2046,35 @@
   </div>
 
   <!-- ========================================================
-       ONGLET 3 : COMMANDE AVEC TICKET EN DIRECT
+       ONGLET 3 : COMMANDE AVEC CHOIX DU RESTAURANT (POINT E / PLATEAU)
   ======================================================== -->
   <div id="tab-commande" class="tab-view">
     <div class="order-page">
       <div class="order-box reveal">
         <h2 class="section-title reveal delay-1" style="margin-bottom: 0.5rem; text-align:center;">Votre Commande</h2>
         <p class="reveal delay-2" style="color:var(--text-muted); text-align:center; font-size:0.9rem; margin-bottom:2rem;">
-          Vérifiez vos plats, choisissez votre mode de service et transmettez votre commande en 1 clic.
+          Choisissez votre restaurant, vérifiez vos plats et transmettez votre commande directement sur WhatsApp.
         </p>
+
+        <!-- SÉLECTEUR DE RESTAURANT : POINT E VS PLATEAU -->
+        <div class="form-group reveal delay-2">
+          <label>Choisissez votre restaurant Urbanista :</label>
+          <div class="branch-selector">
+            <label class="branch-card selected" id="branch-point-e" onclick="selectBranch('point-e')">
+              <input type="radio" name="restaurant_branch" value="Point E" checked />
+              <div style="font-size:1.4rem; margin-bottom:4px;">📍</div>
+              <div class="branch-title">Urbanista Point E</div>
+              <div class="branch-sub">Rue 7 · +221 77 844 62 06</div>
+            </label>
+
+            <label class="branch-card" id="branch-plateau" onclick="selectBranch('plateau')">
+              <input type="radio" name="restaurant_branch" value="Plateau" />
+              <div style="font-size:1.4rem; margin-bottom:4px;">🏙️</div>
+              <div class="branch-title">Urbanista Plateau</div>
+              <div class="branch-sub">Plateau · +221 78 451 15 15</div>
+            </label>
+          </div>
+        </div>
 
         <!-- TICKET INTERACTIF DE COMMANDE -->
         <div class="ticket-container reveal delay-2">
@@ -2028,9 +2088,7 @@
             <span style="font-size:0.8rem; color:var(--gold-wave); cursor:pointer;" onclick="switchTab('menu')">👉 Consulter le menu pour ajouter des plats</span>
           </div>
 
-          <ul class="ticket-items-list" id="ticketList">
-            <!-- Rempli dynamiquement en JS -->
-          </ul>
+          <ul class="ticket-items-list" id="ticketList"></ul>
 
           <div class="ticket-footer-total" id="ticketFooterTotal" style="display:none;">
             <span>Total Indicatif :</span>
@@ -2045,14 +2103,14 @@
               <input type="radio" name="service_mode" value="Sur place (Au restaurant)" checked />
               <div style="font-size:1.8rem;">🍽️</div>
               <div class="mode-title">Manger sur place</div>
-              <div class="mode-desc">Dans notre salle ou terrasse au Point E</div>
+              <div class="mode-desc">En salle ou en terrasse</div>
             </label>
 
             <label class="mode-card" id="card-takeaway" onclick="selectServiceMode('takeaway')">
               <input type="radio" name="service_mode" value="À emporter (Pick-up)" />
               <div style="font-size:1.8rem;">🛍️</div>
               <div class="mode-title">À venir récupérer</div>
-              <div class="mode-desc">Préparé et emballé à l'heure convenue</div>
+              <div class="mode-desc">Préparé à l'heure convenue</div>
             </label>
           </div>
 
@@ -2077,9 +2135,9 @@
             <input type="time" id="pickupTime" class="form-control" />
           </div>
 
-          <!-- Options rapides : Cuisson & Accompagnements en pastilles -->
+          <!-- Options rapides -->
           <div class="form-group reveal delay-3">
-            <label>Options rapides de cuisson (si viande) :</label>
+            <label>Options de cuisson (si viande) :</label>
             <div class="pill-select-group">
               <span class="tag-pill" onclick="toggleOptionPill(this, 'Cuisson : Saignant')">🥩 Saignant</span>
               <span class="tag-pill" onclick="toggleOptionPill(this, 'Cuisson : À point')">🥩 À point</span>
@@ -2098,12 +2156,12 @@
           </div>
 
           <div class="form-group reveal delay-4">
-            <label>Précisions supplémentaires / Allergies / Autres plats non listés</label>
+            <label>Précisions supplémentaires / Allergies</label>
             <input type="text" id="orderNotes" class="form-control" placeholder="Ex: Sauce poivre à part, sans oignons..." />
           </div>
 
           <button type="submit" class="order-submit-btn shimmer-btn reveal delay-4">
-            <span>Transmettre la commande sur WhatsApp</span>
+            <span id="btnSubmitText">Envoyer la commande (Point E) via WhatsApp</span>
             <span>💬</span>
           </button>
         </form>
@@ -2111,37 +2169,44 @@
     </div>
   </div>
 
-  <!-- BARRE FLOTTANTE RÉCAPITULATIVE (Visible dès qu'un plat est sélectionné) -->
+  <!-- BARRE FLOTTANTE PANIER -->
   <div class="floating-summary-bar" id="floatingBar">
     <div class="floating-bar-info" id="floatingBarText">1 plat sélectionné</div>
     <button class="floating-bar-btn" onclick="switchTab('commande')">Voir mon ticket →</button>
   </div>
 
-  <!-- CONTACT / FOOTER -->
+  <!-- CONTACT & LES DEUX ADRESSES -->
   <footer class="contact-section">
     <div class="contact-container">
       <div class="reveal">
         <div class="contact-brand-circle">UB</div>
-        <h4 style="font-family:var(--font-serif); font-size:1.4rem; text-transform:uppercase; margin-bottom:0.5rem;">Urbanista Bistro</h4>
-        <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">Le rendez-vous incontournable pour un brunch complet, un déjeuner gourmand ou un dîner chic au Point E, Dakar.</p>
-        
-        <a href="https://maps.google.com/?q=Urbanista+Bistro+Point+E+Dakar" target="_blank" class="gps-btn">
-          📍 Obtenir l'Itinéraire GPS (Google Maps)
+        <h4 style="font-family:var(--font-serif); font-size:1.4rem; text-transform:uppercase; margin-bottom:0.5rem;">Urbanista Dakar</h4>
+        <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">Le rendez-vous bistronomique incontournable à Dakar. Retrouvez notre ambiance chaleureuse au Point E et au Plateau.</p>
+        <p style="margin-top:0.8rem;">📸 <a href="https://www.instagram.com/urbanista.bistro" target="_blank" style="color:var(--gold-wave);">Instagram : @urbanista.bistro</a></p>
+      </div>
+
+      <!-- ADRESSE 1 : POINT E -->
+      <div class="contact-col reveal delay-1">
+        <h5>Urbanista Point E</h5>
+        <p>📍 Rue 7, Quartier Point E, Dakar</p>
+        <p>🕒 Ouvert 7j/7 jusqu'à 23:00</p>
+        <p>📞 <a href="tel:+221338690600">+221 33 869 06 00</a> (Fixe)</p>
+        <p>💬 <a href="https://wa.me/221778446206" target="_blank">WhatsApp : +221 77 844 62 06</a></p>
+        <a href="https://maps.app.goo.gl/VprrwTRSZLpGSTdk9" target="_blank" class="gps-btn">
+          📍 Itinéraire GPS Point E
         </a>
       </div>
 
-      <div class="contact-col reveal delay-1">
-        <h5>Adresse & Horaires</h5>
-        <p>📍 Rue 7, Quartier Point E, Dakar</p>
-        <p>🕒 Ouvert 7j/7 jusqu'à 23:00</p>
-        <p>⭐ Noté 4.6/5 sur Google (365+ avis)</p>
-      </div>
-
+      <!-- ADRESSE 2 : PLATEAU -->
       <div class="contact-col reveal delay-2">
-        <h5>Contact Direct</h5>
-        <p>📞 <a href="tel:+221338690600">+221 33 869 06 00</a> (Fixe)</p>
-        <p>💬 <a href="https://wa.me/221778446206?text=Bonjour%20Urbanista%20Bistro%20Dakar,%20je%20souhaite%20des%20informations" target="_blank">Chatter sur WhatsApp (+221 77 844 62 06)</a></p>
-        <p>📸 <a href="https://www.instagram.com/urbanista.bistro" target="_blank">Instagram : @urbanista.bistro</a></p>
+        <h5>Urbanista Plateau</h5>
+        <p>📍 Quartier Plateau, Centre-Ville, Dakar</p>
+        <p>🕒 Ouvert 7j/7 jusqu'à 23:00</p>
+        <p>📞 <a href="tel:+221784511515">+221 78 451 15 15</a> (Appels & WhatsApp)</p>
+        <p>💬 <a href="https://wa.me/221784511515" target="_blank">WhatsApp : +221 78 451 15 15</a></p>
+        <a href="https://maps.app.goo.gl/svaWJ8cRs5cYLDVE8" target="_blank" class="gps-btn">
+          📍 Itinéraire GPS Plateau
+        </a>
       </div>
     </div>
 
@@ -2150,16 +2215,16 @@
     </div>
   </footer>
 
-  <!-- BOUTON FLOTTANT WHATSAPP (Mobile officiel 77 844 62 06) -->
+  <!-- BOUTON FLOTTANT WHATSAPP (Ligne générale conservée +221 77 844 62 06) -->
   <a href="https://wa.me/221778446206?text=Bonjour%20Urbanista%20Bistro%20Dakar,%20je%20souhaite%20une%20information" target="_blank" class="floating-wa-btn" aria-label="WhatsApp Urbanista Bistro Dakar" title="Écrivez-nous sur WhatsApp (+221 77 844 62 06)">
     <svg viewBox="0 0 24 24">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
     </svg>
   </a>
 
-  <!-- SCRIPT LOGIQUE : TICKET DE COMMANDE, SPOTLIGHT & CURSEUR LUXE -->
+  <!-- SCRIPT LOGIQUE : MULTI-ÉTABLISSEMENTS, TICKET & ROUTAGE WHATSAPP -->
   <script>
-    // 1. STATUT EN TEMPS RÉEL (Fuseau horaire Dakar GMT)
+    // 1. STATUT EN TEMPS RÉEL (GMT Dakar)
     function updateBistroStatus() {
       const now = new Date();
       const utcHour = now.getUTCHours();
@@ -2181,7 +2246,7 @@
       }
     }
 
-    // 2. SCROLL REVEAL OPTIMISÉ (IntersectionObserver)
+    // 2. SCROLL REVEAL OPTIMISÉ
     function initScrollReveal() {
       const revealElements = document.querySelectorAll('.reveal, .reveal-zoom');
       const observer = new IntersectionObserver((entries) => {
@@ -2199,7 +2264,7 @@
       revealElements.forEach(el => observer.observe(el));
     }
 
-    // 3. CURSEUR PERSONNALISÉ & SPOTLIGHT INTERACTIF (DESKTOP)
+    // 3. CURSEUR PERSONNALISÉ & SPOTLIGHT DESKTOP
     function initCursorAndSpotlight() {
       const cursorDot = document.getElementById('cursorDot');
       const cursorOutline = document.getElementById('cursorOutline');
@@ -2218,7 +2283,7 @@
           }, { duration: 400, fill: "forwards" });
         });
 
-        const interactives = document.querySelectorAll('button, a, .menu-card-item, .service-card, .review-card, input, textarea');
+        const interactives = document.querySelectorAll('button, a, .menu-card-item, .service-card, .review-card, .branch-card, input, textarea');
         interactives.forEach(el => {
           el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
           el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
@@ -2255,7 +2320,7 @@
       }, 100);
     }
 
-    // 5. RECHERCHE EN DIRECT DANS LE MENU (LIVE SEARCH)
+    // 5. RECHERCHE EN DIRECT DANS LE MENU
     function handleMenuSearch() {
       const query = document.getElementById('menuSearch').value.toLowerCase().trim();
       const items = document.querySelectorAll('.menu-card-item');
@@ -2271,7 +2336,7 @@
       });
     }
 
-    // 6. FILTRAGE DU MENU PAR BOUTONS
+    // 6. FILTRAGE DU MENU
     function filterMenu(cat, btn) {
       document.getElementById('menuSearch').value = '';
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -2288,7 +2353,7 @@
       });
     }
 
-    // 7. GESTION DU TICKET DE COMMANDE INTERACTIF
+    // 7. GESTION DU TICKET DE COMMANDE
     let orderTicket = [];
     let selectedOptions = [];
 
@@ -2395,7 +2460,31 @@
       }
     }
 
-    // 8. PASTILLES OPTIONS RAPIDES
+    // 8. SÉLECTION DE LA BRANCHE (POINT E / PLATEAU) ET DU NUMÉRO WHATSAPP
+    let currentBranch = 'Point E';
+    let currentWhatsAppNumber = '221778446206'; // Numéro Point E par défaut
+
+    function selectBranch(branchKey) {
+      const cardPointE = document.getElementById('branch-point-e');
+      const cardPlateau = document.getElementById('branch-plateau');
+      const btnText = document.getElementById('btnSubmitText');
+
+      if (branchKey === 'point-e') {
+        currentBranch = 'Point E';
+        currentWhatsAppNumber = '221778446206'; // Point E
+        cardPointE.classList.add('selected');
+        cardPlateau.classList.remove('selected');
+        btnText.innerText = 'Envoyer la commande (Point E) via WhatsApp';
+      } else {
+        currentBranch = 'Plateau';
+        currentWhatsAppNumber = '221784511515'; // Plateau
+        cardPlateau.classList.add('selected');
+        cardPointE.classList.remove('selected');
+        btnText.innerText = 'Envoyer la commande (Plateau) via WhatsApp';
+      }
+    }
+
+    // 9. PASTILLES OPTIONS RAPIDES
     function toggleOptionPill(pill, value) {
       pill.classList.toggle('active');
       if (pill.classList.contains('active')) {
@@ -2405,7 +2494,7 @@
       }
     }
 
-    // 9. CHOIX DU MODE SERVICE
+    // 10. CHOIX DU MODE SERVICE
     let currentMode = 'Sur place (Au restaurant)';
     function selectServiceMode(mode) {
       const cardDinein = document.getElementById('card-dinein');
@@ -2428,7 +2517,7 @@
       }
     }
 
-    // 10. TRANSMISSION WHATSAPP DIRECTE VERS LE +221 77 844 62 06
+    // 11. TRANSMISSION WHATSAPP AVEC LE BON NUMÉRO SELON LE RESTAURANT
     function submitOrder(e) {
       e.preventDefault();
 
@@ -2445,6 +2534,7 @@
 
       let message = `*NOUVELLE COMMANDE - URBANISTA BISTRO*\n`;
       message += `------------------------------------\n`;
+      message += `*Établissement :* Urbanista ${currentBranch}\n`;
       message += `*Mode :* ${currentMode}\n`;
       message += `*Nom du client :* ${name}\n`;
       message += `*Téléphone :* ${phone}\n`;
@@ -2478,9 +2568,9 @@
       }
 
       const encodedMessage = encodeURIComponent(message);
-      const restaurantWhatsApp = "221778446206";
 
-      window.open(`https://wa.me/${restaurantWhatsApp}?text=${encodedMessage}`, '_blank');
+      // Redirection automatique vers le numéro WhatsApp de la branche choisie (778446206 ou 784511515)
+      window.open(`https://wa.me/${currentWhatsAppNumber}?text=${encodedMessage}`, '_blank');
     }
 
     // Initialisation
