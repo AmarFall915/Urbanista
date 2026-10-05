@@ -226,7 +226,8 @@
       fill: currentColor;
     }
 
-    .nav-btn-order {
+    /* BOUTON RÉSERVER HAUT DE GAMME */
+    .nav-btn-reserve {
       background: var(--rose-terre);
       color: #fff !important;
       padding: 0.65rem 1.4rem;
@@ -245,7 +246,7 @@
       gap: 6px;
     }
 
-    .nav-btn-order:hover {
+    .nav-btn-reserve:hover {
       background: var(--rose-terre-dark);
       transform: translateY(-2px);
     }
@@ -1189,7 +1190,7 @@
     }
 
     /* =========================================
-       PAGE 3 : COMMANDE AVEC SÉLECTION DU RESTAURANT
+       PAGE 3 : COMMANDE AVEC CHOIX DU RESTAURANT
     ========================================= */
     .order-page {
       padding: 3.5rem 1.5rem 6rem;
@@ -1532,6 +1533,104 @@
       white-space: nowrap;
     }
 
+    /* MODALE DE RÉSERVATION ÉLÉGANTE (OPTION 1) */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 8, 8, 0.82);
+      backdrop-filter: blur(16px);
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 1.5rem;
+    }
+
+    .modal-backdrop.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content-box {
+      background: var(--dark-card);
+      border: 1px solid rgba(168, 104, 102, 0.4);
+      border-radius: 20px;
+      max-width: 520px;
+      width: 100%;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      position: relative;
+      transform: scale(0.95) translateY(10px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-backdrop.show .modal-content-box {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--gold-wave);
+    }
+
+    .modal-header-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    .modal-header-sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .res-branch-choice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .res-branch-pill {
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      background: var(--dark-surface);
+      border-radius: 10px;
+      padding: 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      transition: all 0.2s ease;
+    }
+
+    .res-branch-pill.active {
+      border-color: var(--gold-wave);
+      background: rgba(168, 104, 102, 0.25);
+      color: var(--gold-wave);
+    }
+
     /* FOOTER & MINIATURES PHOTOS ADRESSES */
     .contact-section {
       background: #0B0909;
@@ -1720,7 +1819,7 @@
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-outline" id="cursorOutline"></div>
 
-  <!-- EN-TÊTE / NAVIGATION PAR ONGLETS -->
+  <!-- EN-TÊTE / NAVIGATION -->
   <header>
     <div class="navbar">
       <div class="nav-brand" onclick="switchTab('accueil')">
@@ -1734,16 +1833,16 @@
         <li><button class="nav-link" onclick="switchTab('commande')" id="nav-commande">Commander <span class="badge-count" id="navBadgeCount" style="display:none;">0</span></button></li>
       </ul>
 
-      <!-- Actions à droite avec Logo Instagram direct & Shimmer -->
+      <!-- Actions à droite avec Logo Instagram direct & Bouton RÉSERVER HAUT DE GAMME -->
       <div class="nav-actions-right">
         <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-icon-btn" aria-label="Instagram Urbanista Bistro Dakar" title="Instagram @urbanista.bistro">
           <svg viewBox="0 0 24 24">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
         </a>
-        <button class="nav-btn-order shimmer-btn" onclick="switchTab('commande')">
-          <span>Commander</span>
-          <span class="badge-count" id="headerBadgeCount" style="display:none;">0</span>
+        <button class="nav-btn-reserve shimmer-btn" onclick="openReservationModal()">
+          <span>Réserver une table</span>
+          <span>📅</span>
         </button>
       </div>
     </div>
@@ -1777,7 +1876,7 @@
         
         <div class="hero-btn-group reveal delay-3">
           <button onclick="switchTab('menu')" class="btn-main shimmer-btn">Découvrir le Menu</button>
-          <button onclick="switchTab('commande')" class="btn-outline">Commander à distance</button>
+          <button onclick="openReservationModal()" class="btn-outline">Réserver une table</button>
         </div>
       </div>
     </section>
@@ -2191,7 +2290,6 @@
           <div>
             <div class="card-top">
               <h3 class="dish-title">Risotto aux Gambas</h3>
-              <span class="dotted-leader"></span>
               <span class="dish-price">17 500 F</span>
             </div>
             <p class="dish-desc">Risotto crémeux lié au parmesan et persil, garni de gambas poêlées à l'ail.</p>
@@ -2253,7 +2351,7 @@
   </div>
 
   <!-- ========================================================
-       ONGLET 3 : COMMANDE AVEC CHOIX DU RESTAURANT (POINT E / PLATEAU)
+       ONGLET 3 : COMMANDE AVEC SÉLECTION DU RESTAURANT
   ======================================================== -->
   <div id="tab-commande" class="tab-view">
     <div class="order-page">
@@ -2308,7 +2406,7 @@
           <div class="mode-selector reveal delay-2">
             <label class="mode-card selected" id="card-dinein" onclick="selectServiceMode('dinein')">
               <input type="radio" name="service_mode" value="Sur place (Au restaurant)" checked />
-              <div style="font-size:1.8rem;">🍽️</div>
+              <div style="font-size:1.8rem;">🍽️️</div>
               <div class="mode-title">Manger sur place</div>
               <div class="mode-desc">En salle ou en terrasse</div>
             </label>
@@ -2382,6 +2480,69 @@
     <button class="floating-bar-btn" onclick="switchTab('commande')">Voir mon ticket →</button>
   </div>
 
+  <!-- ========================================================
+       MODALE DE RÉSERVATION DE TABLE (OPTION 1 LUXE)
+  ======================================================== -->
+  <div class="modal-backdrop" id="reservationModal" onclick="closeReservationModal(event)">
+    <div class="modal-content-box" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeReservationModal()">&times;</button>
+      <h3 class="modal-header-title">Réserver une Table</h3>
+      <p class="modal-header-sub">Sélectionnez votre établissement et vos informations pour confirmer votre réservation directement sur WhatsApp.</p>
+
+      <form onsubmit="submitTableReservation(event)">
+        <div class="form-group">
+          <label>Restaurant choisi :</label>
+          <div class="res-branch-choice">
+            <div class="res-branch-pill active" id="res-branch-pointe" onclick="selectResBranch('pointe')">
+              📍 Point E (Rue 7)
+            </div>
+            <div class="res-branch-pill" id="res-branch-plateau" onclick="selectResBranch('plateau')">
+              🏙️ Plateau (Centre)
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Votre Nom complet *</label>
+          <input type="text" id="resName" class="form-control" placeholder="Ex: Mariama Sy" required />
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label>Date souhaitée *</label>
+            <input type="date" id="resDate" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label>Heure *</label>
+            <input type="time" id="resTime" class="form-control" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nombre de convives *</label>
+          <select id="resGuests" class="form-control" style="cursor:pointer;" required>
+            <option value="1 personne">1 personne</option>
+            <option value="2 personnes" selected>2 personnes</option>
+            <option value="3 personnes">3 personnes</option>
+            <option value="4 personnes">4 personnes</option>
+            <option value="5 personnes">5 personnes</option>
+            <option value="6 personnes et +">6 personnes et + (Groupe)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Demande particulière / Espace préféré</label>
+          <input type="text" id="resNotes" class="form-control" placeholder="Ex: Table en terrasse, anniversaire..." />
+        </div>
+
+        <button type="submit" class="order-submit-btn shimmer-btn" style="margin-top:1.5rem;">
+          <span>Confirmer sur WhatsApp</span>
+          <span>💬</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- CONTACT & LES DEUX ADRESSES AVEC LEURS PHOTOS DÉDIÉES -->
   <footer class="contact-section">
     <div class="contact-container">
@@ -2437,7 +2598,7 @@
     </svg>
   </a>
 
-  <!-- SCRIPT LOGIQUE : MULTI-ÉTABLISSEMENTS, TICKET & ROUTAGE WHATSAPP -->
+  <!-- SCRIPT LOGIQUE : MODALE RÉSERVATION, MULTI-ÉTABLISSEMENTS & WHATSAPP -->
   <script>
     // 1. STATUT EN TEMPS RÉEL (GMT Dakar)
     function updateBistroStatus() {
@@ -2498,7 +2659,7 @@
           }, { duration: 400, fill: "forwards" });
         });
 
-        const interactives = document.querySelectorAll('button, a, .menu-card-item, .service-card, .review-card, .branch-card, .branch-card-showcase, input, textarea');
+        const interactives = document.querySelectorAll('button, a, .menu-card-item, .service-card, .review-card, .branch-card, .branch-card-showcase, input, textarea, select');
         interactives.forEach(el => {
           el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
           el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
@@ -2535,13 +2696,75 @@
       }, 100);
     }
 
-    // Raccourci depuis la section "Nos Deux Adresses" vers la commande pré-sélectionnée
     function openOrderForBranch(branchKey) {
       switchTab('commande');
       selectBranch(branchKey);
     }
 
-    // 5. RECHERCHE EN DIRECT DANS LE MENU
+    // 5. GESTION DE LA MODALE RÉSERVATION DE TABLE (OPTION 1)
+    let selectedResBranch = 'Point E';
+    let selectedResPhone = '221778446206';
+
+    function openReservationModal() {
+      const modal = document.getElementById('reservationModal');
+      modal.classList.add('show');
+      // Date min = aujourd'hui
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('resDate').min = today;
+      document.getElementById('resDate').value = today;
+    }
+
+    function closeReservationModal(e) {
+      const modal = document.getElementById('reservationModal');
+      modal.classList.remove('show');
+    }
+
+    function selectResBranch(branch) {
+      const pillPointe = document.getElementById('res-branch-pointe');
+      const pillPlateau = document.getElementById('res-branch-plateau');
+
+      if (branch === 'pointe') {
+        selectedResBranch = 'Point E (Rue 7)';
+        selectedResPhone = '221778446206';
+        pillPointe.classList.add('active');
+        pillPlateau.classList.remove('active');
+      } else {
+        selectedResBranch = 'Plateau (Centre-Ville)';
+        selectedResPhone = '221784511515';
+        pillPlateau.classList.add('active');
+        pillPointe.classList.remove('active');
+      }
+    }
+
+    function submitTableReservation(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('resName').value.trim();
+      const date = document.getElementById('resDate').value;
+      const time = document.getElementById('resTime').value;
+      const guests = document.getElementById('resGuests').value;
+      const notes = document.getElementById('resNotes').value.trim();
+
+      let msg = `*RÉSERVATION DE TABLE - URBANISTA DAKAR*\n`;
+      msg += `------------------------------------\n`;
+      msg += `*Établissement :* Urbanista ${selectedResBranch}\n`;
+      msg += `*Nom :* ${name}\n`;
+      msg += `*Date :* ${date}\n`;
+      msg += `*Heure :* ${time}\n`;
+      msg += `*Nombre de personnes :* ${guests}\n`;
+
+      if (notes) {
+        msg += `*Demande spécifique :* ${notes}\n`;
+      }
+      msg += `------------------------------------\n`;
+      msg += `Bonjour l'équipe Urbanista, merci de me confirmer la disponibilité d'une table svp !`;
+
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/${selectedResPhone}?text=${encoded}`, '_blank');
+      closeReservationModal();
+    }
+
+    // 6. RECHERCHE EN DIRECT DANS LE MENU
     function handleMenuSearch() {
       const query = document.getElementById('menuSearch').value.toLowerCase().trim();
       const items = document.querySelectorAll('.menu-card-item');
@@ -2557,7 +2780,7 @@
       });
     }
 
-    // 6. FILTRAGE DU MENU
+    // 7. FILTRAGE DU MENU
     function filterMenu(cat, btn) {
       document.getElementById('menuSearch').value = '';
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -2574,7 +2797,7 @@
       });
     }
 
-    // 7. GESTION DU TICKET DE COMMANDE
+    // 8. GESTION DU TICKET DE COMMANDE
     let orderTicket = [];
     let selectedOptions = [];
 
@@ -2662,28 +2885,24 @@
       const totalSum = orderTicket.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
 
       const navBadge = document.getElementById('navBadgeCount');
-      const headerBadge = document.getElementById('headerBadgeCount');
       const floatingBar = document.getElementById('floatingBar');
       const floatingBarText = document.getElementById('floatingBarText');
 
       if (totalCount > 0) {
         navBadge.innerText = totalCount;
         navBadge.style.display = 'inline-block';
-        headerBadge.innerText = totalCount;
-        headerBadge.style.display = 'inline-block';
 
         floatingBarText.innerText = `🍔 ${totalCount} plat${totalCount > 1 ? 's' : ''} · ${totalSum.toLocaleString()} F CFA`;
         floatingBar.classList.add('show');
       } else {
         navBadge.style.display = 'none';
-        headerBadge.style.display = 'none';
         floatingBar.classList.remove('show');
       }
     }
 
-    // 8. SÉLECTION DE LA BRANCHE (POINT E / PLATEAU) ET DU NUMÉRO WHATSAPP
+    // 9. SÉLECTION DU RESTAURANT DANS LA COMMANDE
     let currentBranch = 'Point E';
-    let currentWhatsAppNumber = '221778446206'; // Numéro Point E par défaut
+    let currentWhatsAppNumber = '221778446206';
 
     function selectBranch(branchKey) {
       const cardPointE = document.getElementById('branch-point-e');
@@ -2705,7 +2924,7 @@
       }
     }
 
-    // 9. PASTILLES OPTIONS RAPIDES
+    // 10. PASTILLES OPTIONS RAPIDES
     function toggleOptionPill(pill, value) {
       pill.classList.toggle('active');
       if (pill.classList.contains('active')) {
@@ -2715,7 +2934,7 @@
       }
     }
 
-    // 10. CHOIX DU MODE SERVICE
+    // 11. CHOIX DU MODE SERVICE
     let currentMode = 'Sur place (Au restaurant)';
     function selectServiceMode(mode) {
       const cardDinein = document.getElementById('card-dinein');
@@ -2738,7 +2957,7 @@
       }
     }
 
-    // 11. TRANSMISSION WHATSAPP
+    // 12. TRANSMISSION WHATSAPP
     function submitOrder(e) {
       e.preventDefault();
 
