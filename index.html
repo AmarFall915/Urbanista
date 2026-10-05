@@ -18,11 +18,11 @@
       --rose-terre-dark: #8B4F4D;
       --rose-terre-deep: #5E3231;
       --rose-terre-light: #F4EAE8;
-      --rose-glow: rgba(168, 104, 102, 0.3);
+      --rose-glow: rgba(168, 104, 102, 0.35);
       
       --gold-wave: #E2C9B8;
       --dark-bg: #141111;
-      --dark-card: #1F1919;
+      --dark-card: rgba(31, 25, 25, 0.75);
       --dark-surface: #261F1F;
       --text-light: #FFFFFF;
       --text-muted: #D1C5C3;
@@ -35,6 +35,7 @@
       padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -56,8 +57,8 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(20, 17, 17, 0.95);
-      backdrop-filter: blur(12px);
+      background: rgba(20, 17, 17, 0.92);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(168, 104, 102, 0.25);
     }
 
@@ -142,16 +143,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: 1px solid rgba(168, 104, 102, 0.4);
       color: var(--gold-wave);
       transition: all 0.3s ease;
+      background: rgba(38, 31, 31, 0.6);
     }
 
     .insta-icon-btn:hover {
-      background: rgba(168, 104, 102, 0.25);
+      background: var(--rose-terre);
       border-color: var(--rose-terre);
       color: #fff;
       transform: translateY(-2px);
@@ -184,6 +186,29 @@
       transform: translateY(-2px);
     }
 
+    /* EFFET SHIMMER SUR LES BOUTONS PRINCIPAUX */
+    .shimmer-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shimmer-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 30%;
+      height: 200%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.28), transparent);
+      transform: rotate(30deg);
+      animation: shimmerMove 4.5s infinite;
+    }
+
+    @keyframes shimmerMove {
+      0% { left: -70%; }
+      30%, 100% { left: 140%; }
+    }
+
     /* CONTENEUR DES PAGES / ONGLETS */
     .tab-view {
       display: none;
@@ -199,9 +224,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* =========================================
-       ANIMATIONS SCROLL REVEAL HAUT DE GAMME
-    ========================================= */
+    /* SCROLL REVEAL HAUT DE GAMME */
     .reveal {
       opacity: 0;
       transform: translateY(26px);
@@ -228,19 +251,10 @@
       transform: scale(1) translateY(0);
     }
 
-    /* Délais échelonnés subtils */
     .delay-1 { transition-delay: 0.1s; }
     .delay-2 { transition-delay: 0.2s; }
     .delay-3 { transition-delay: 0.3s; }
     .delay-4 { transition-delay: 0.4s; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal, .reveal-zoom {
-        transition: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-    }
 
     /* =========================================
        PAGE 1 : ACCUEIL
@@ -280,6 +294,42 @@
     .hero-content {
       max-width: 850px;
       z-index: 2;
+    }
+
+    /* BADGE STATUT EN DIRECT DAKAR */
+    .live-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+      background: rgba(38, 31, 31, 0.75);
+      border: 1px solid rgba(168, 104, 102, 0.35);
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #25D366;
+      box-shadow: 0 0 10px #25D366;
+      animation: pulseDot 2s infinite;
+    }
+
+    .status-dot.closed {
+      background: #E53935;
+      box-shadow: 0 0 10px #E53935;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
     }
 
     .hero-logo-badge {
@@ -513,6 +563,66 @@
       font-size: 0.8rem;
     }
 
+    /* MINI GALERIE VIBES INSTAGRAM */
+    .insta-vibes-section {
+      padding: 5rem 1.5rem 6rem;
+      background: var(--dark-bg);
+      text-align: center;
+    }
+
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      max-width: 1100px;
+      margin: 2.5rem auto 0;
+    }
+
+    .insta-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      border: 1px solid rgba(168, 104, 102, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .insta-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .insta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(94, 50, 49, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .insta-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px var(--rose-glow);
+    }
+
+    .insta-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .insta-item:hover .insta-overlay {
+      opacity: 1;
+    }
+
     /* =========================================
        PAGE 2 : MENU DÉTAILLÉ
     ========================================= */
@@ -562,16 +672,20 @@
 
     .menu-card-item {
       background: var(--dark-card);
-      border: 1px solid rgba(168, 104, 102, 0.2);
+      border: 1px solid rgba(168, 104, 102, 0.25);
       border-radius: 16px;
       padding: 1.6rem;
-      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .menu-card-item:hover {
       transform: translateY(-4px);
       border-color: var(--rose-terre);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
     }
 
     .card-top {
@@ -600,6 +714,32 @@
       font-size: 0.83rem;
       color: var(--text-muted);
       line-height: 1.5;
+      margin-bottom: 1.2rem;
+    }
+
+    /* BOUTON D'AJOUT RAPIDE VERS COMMANDE */
+    .quick-order-btn {
+      align-self: flex-start;
+      background: rgba(168, 104, 102, 0.15);
+      border: 1px solid var(--rose-terre);
+      color: var(--gold-wave);
+      padding: 0.45rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+    }
+
+    .quick-order-btn:hover {
+      background: var(--rose-terre);
+      color: #fff;
+      transform: translateY(-2px);
     }
 
     /* =========================================
@@ -616,6 +756,7 @@
       border: 1px solid rgba(168, 104, 102, 0.35);
       border-radius: 20px;
       padding: 3rem 2.5rem;
+      backdrop-filter: blur(16px);
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
     }
 
@@ -669,7 +810,7 @@
 
     .mode-card.selected {
       border-color: var(--rose-terre);
-      background: rgba(168, 104, 102, 0.15);
+      background: rgba(168, 104, 102, 0.2);
     }
 
     .mode-card input[type="radio"] {
@@ -760,22 +901,23 @@
       color: var(--gold-wave);
     }
 
-    .insta-badge-link {
+    .gps-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(168, 104, 102, 0.2);
+      background: rgba(168, 104, 102, 0.18);
       border: 1px solid var(--rose-terre);
       color: #fff !important;
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1.1rem;
       border-radius: 30px;
-      margin-top: 0.6rem;
       font-size: 0.8rem;
+      margin-top: 0.6rem;
       transition: all 0.3s ease;
     }
 
-    .insta-badge-link:hover {
+    .gps-btn:hover {
       background: var(--rose-terre);
+      transform: translateY(-2px);
     }
 
     .footer-bottom {
@@ -788,6 +930,36 @@
       color: #777;
     }
 
+    /* BOUTON FLOTTANT WHATSAPP (ACCÈS RAPIDE) */
+    .floating-wa-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      background: #25D366;
+      color: #fff;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .floating-wa-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+    }
+
+    .floating-wa-btn svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 850px) {
       .about-container,
@@ -797,11 +969,20 @@
       .nav-links {
         display: none;
       }
+      .insta-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .mode-selector {
         grid-template-columns: 1fr;
       }
       .order-box {
         padding: 2rem 1.2rem;
+      }
+      .floating-wa-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
       }
     }
   </style>
@@ -822,14 +1003,14 @@
         <li><button class="nav-link" onclick="switchTab('commande')" id="nav-commande">Commander</button></li>
       </ul>
 
-      <!-- Actions à droite avec Logo Instagram direct -->
+      <!-- Actions à droite avec Logo Instagram direct & Shimmer -->
       <div class="nav-actions-right">
-        <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-icon-btn" aria-label="Instagram Urbanista Bistro Dakar">
+        <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-icon-btn" aria-label="Instagram Urbanista Bistro Dakar" title="Instagram @urbanista.bistro">
           <svg viewBox="0 0 24 24">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
         </a>
-        <button class="nav-btn-order" onclick="switchTab('commande')">Commander</button>
+        <button class="nav-btn-order shimmer-btn" onclick="switchTab('commande')">Commander</button>
       </div>
     </div>
   </header>
@@ -850,12 +1031,18 @@
       </svg>
 
       <div class="hero-content">
-        <div class="hero-logo-badge reveal">UB</div>
-        <h1 class="hero-title reveal delay-1">Savourez L'Excellence</h1>
+        <!-- Statut Ouvert/Fermé calculé dynamiquement sur l'heure de Dakar -->
+        <div class="live-status-badge reveal" id="liveStatusContainer">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">Calcul du statut...</span>
+        </div>
+
+        <div class="hero-logo-badge reveal delay-1">UB</div>
+        <h1 class="hero-title reveal delay-2">Savourez L'Excellence</h1>
         <p class="hero-subtitle reveal delay-2">Une expérience bistronomique raffinée au Point E mêlant brunchs gourmands, déjeuners savoureux et cocktails signatures.</p>
         
         <div class="hero-btn-group reveal delay-3">
-          <button onclick="switchTab('menu')" class="btn-main">Découvrir le Menu</button>
+          <button onclick="switchTab('menu')" class="btn-main shimmer-btn">Découvrir le Menu</button>
           <button onclick="switchTab('commande')" class="btn-outline">Commander à distance</button>
         </div>
       </div>
@@ -899,6 +1086,31 @@
         </div>
       </div>
     </section>
+
+    <!-- SECTION VIBES & INSTAGRAM -->
+    <section class="insta-vibes-section">
+      <h2 class="section-title reveal" style="font-size:2rem; margin-bottom:0.5rem;">L'Ambiance Urbanista</h2>
+      <p class="reveal delay-1" style="color:var(--text-muted); font-size:0.85rem; letter-spacing:2px; text-transform:uppercase;">Instants capturés au cœur du Point E</p>
+      
+      <div class="insta-grid">
+        <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-item reveal delay-1">
+          <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=500&q=80" alt="Brunch Gourmand Urbanista" />
+          <div class="insta-overlay">@urbanista.bistro</div>
+        </a>
+        <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-item reveal delay-2">
+          <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=500&q=80" alt="Cocktails Signatures Dakar" />
+          <div class="insta-overlay">@urbanista.bistro</div>
+        </a>
+        <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-item reveal delay-3">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80" alt="Viandes & Plats Grillés" />
+          <div class="insta-overlay">@urbanista.bistro</div>
+        </a>
+        <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-item reveal delay-4">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=500&q=80" alt="Café Bio & Douceurs" />
+          <div class="insta-overlay">@urbanista.bistro</div>
+        </a>
+      </div>
+    </section>
   </div>
 
   <!-- ========================================================
@@ -926,152 +1138,206 @@
       <div class="items-grid">
         <!-- BRUNCH -->
         <div class="menu-card-item reveal" data-cat="brunch">
-          <div class="card-top">
-            <h3 class="dish-title">Formule Urbanista</h3>
-            <span class="dish-price">14 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Formule Urbanista</h3>
+              <span class="dish-price">14 500 F</span>
+            </div>
+            <p class="dish-desc">2 œufs au choix, 2 pancakes, 3 crispy poulet, cream cheese aux herbes, chips maison, viennoiserie, confiture, salade, fruit, jus pressé ou local, boisson chaude.</p>
           </div>
-          <p class="dish-desc">2 œufs au choix, 2 pancakes, 3 crispy poulet, cream cheese aux herbes, chips maison, viennoiserie, confiture, salade, fruit, jus pressé ou local, boisson chaude.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Formule Urbanista (14 500 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-1" data-cat="brunch">
-          <div class="card-top">
-            <h3 class="dish-title">Formule Dreamy</h3>
-            <span class="dish-price">15 000 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Formule Dreamy</h3>
+              <span class="dish-price">15 000 F</span>
+            </div>
+            <p class="dish-desc">Saumon fumé, 3 œufs brouillés, cream cheese maison aux herbes, chips maison, pain au levain, betteraves bouillies, salade, beurre, jus pressé/local, boisson chaude.</p>
           </div>
-          <p class="dish-desc">Saumon fumé, 3 œufs brouillés, cream cheese maison aux herbes, chips maison, pain au levain, betteraves bouillies, salade, beurre, jus pressé/local, boisson chaude.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Formule Dreamy (15 000 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-2" data-cat="brunch">
-          <div class="card-top">
-            <h3 class="dish-title">Healthy & Veggie</h3>
-            <span class="dish-price">14 000 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Healthy & Veggie</h3>
+              <span class="dish-price">14 000 F</span>
+            </div>
+            <p class="dish-desc">Avocado pain au levain & feta, bowl de quinoa, légumes rôtis, houmous, 2 pancakes complètes, pot de chia-mangue, smoothie vert, boisson chaude.</p>
           </div>
-          <p class="dish-desc">Avocado pain au levain & feta, bowl de quinoa, légumes rôtis, houmous, 2 pancakes complètes, pot de chia-mangue, smoothie vert, boisson chaude.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Formule Healthy & Veggie (14 000 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-3" data-cat="brunch">
-          <div class="card-top">
-            <h3 class="dish-title">Formule Oriental</h3>
-            <span class="dish-price">15 000 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Formule Oriental</h3>
+              <span class="dish-price">15 000 F</span>
+            </div>
+            <p class="dish-desc">Assiette de foul, houmous, 2 œufs au plat, halloum grillé, labneh, mini manaiches zaatar, légumes, confiture, fruit, boisson chaude.</p>
           </div>
-          <p class="dish-desc">Assiette de foul, houmous, 2 œufs au plat, halloum grillé, labneh, mini manaiches zaatar, légumes, confiture, fruit, boisson chaude.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Formule Oriental (15 000 F)')">+ Commander ce plat</button>
         </div>
 
         <!-- ENTREES & SALADES -->
         <div class="menu-card-item reveal" data-cat="starters">
-          <div class="card-top">
-            <h3 class="dish-title">Go Big Combo</h3>
-            <span class="dish-price">17 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Go Big Combo</h3>
+              <span class="dish-price">17 500 F</span>
+            </div>
+            <p class="dish-desc">Assiette mixte de BBQ wings, mozzarella sticks, calamari sticks, crispy poulet et frites, servi avec sauce signature urbanista.</p>
           </div>
-          <p class="dish-desc">Assiette mixte de BBQ wings, mozzarella sticks, calamari sticks, crispy poulet et frites, servi avec sauce signature urbanista.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Go Big Combo (17 500 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-1" data-cat="starters">
-          <div class="card-top">
-            <h3 class="dish-title">Salade Burrata</h3>
-            <span class="dish-price">10 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Salade Burrata</h3>
+              <span class="dish-price">10 500 F</span>
+            </div>
+            <p class="dish-desc">Fromage burrata frais, concombres croquants, tomates cerises, croûtons croustillants et sauce pesto maison.</p>
           </div>
-          <p class="dish-desc">Fromage burrata frais, concombres croquants, tomates cerises, croûtons croustillants et sauce pesto maison.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Salade Burrata (10 500 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-2" data-cat="starters">
-          <div class="card-top">
-            <h3 class="dish-title">Gaufre Salée</h3>
-            <span class="dish-price">8 000 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Gaufre Salée</h3>
+              <span class="dish-price">8 000 F</span>
+            </div>
+            <p class="dish-desc">Poulet pané doré, cheddar fondant, salade, tomate, oignons caramélisés, cornichons et œuf au plat.</p>
           </div>
-          <p class="dish-desc">Poulet pané doré, cheddar fondant, salade, tomate, oignons caramélisés, cornichons et œuf au plat.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Gaufre Salée (8 000 F)')">+ Commander ce plat</button>
         </div>
 
         <!-- PLATS & BURGERS -->
         <div class="menu-card-item reveal" data-cat="platters">
-          <div class="card-top">
-            <h3 class="dish-title">Médaillon Urbanista</h3>
-            <span class="dish-price">24 000 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Médaillon Urbanista</h3>
+              <span class="dish-price">24 000 F</span>
+            </div>
+            <p class="dish-desc">300g de filet de bœuf grillé tendre et savoureux, cuisson au choix, avec garniture au choix.</p>
           </div>
-          <p class="dish-desc">300g de filet de bœuf grillé tendre et savoureux, cuisson au choix, avec garniture au choix.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Médaillon Urbanista (24 000 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-1" data-cat="platters">
-          <div class="card-top">
-            <h3 class="dish-title">Thiof Entier Grillé</h3>
-            <span class="dish-price">14 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Thiof Entier Grillé</h3>
+              <span class="dish-price">14 500 F</span>
+            </div>
+            <p class="dish-desc">Thiof frais local mariné aux herbes et épices dakarois, accompagné de riz blanc, frites ou légumes sautés.</p>
           </div>
-          <p class="dish-desc">Thiof frais local mariné aux herbes et épices dakarois, accompagné de riz blanc, frites ou légumes sautés.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Thiof Entier Grillé (14 500 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-2" data-cat="platters">
-          <div class="card-top">
-            <h3 class="dish-title">Burger T (Angus)</h3>
-            <span class="dish-price">12 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Burger T (Angus)</h3>
+              <span class="dish-price">12 500 F</span>
+            </div>
+            <p class="dish-desc">Steak de bœuf Angus, oignons caramélisés, fromage fondu spécial, cornichons, sauce TK et frites fraîches.</p>
           </div>
-          <p class="dish-desc">Steak de bœuf Angus, oignons caramélisés, fromage fondu spécial, cornichons, sauce TK et frites fraîches.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Burger T Angus (12 500 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-3" data-cat="platters">
-          <div class="card-top">
-            <h3 class="dish-title">Philly Steak Sandwich</h3>
-            <span class="dish-price">11 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Philly Steak Sandwich</h3>
+              <span class="dish-price">11 500 F</span>
+            </div>
+            <p class="dish-desc">Émincé de filet de bœuf tendre, champignons sautés, oignons et sauce fromage fondu maison.</p>
           </div>
-          <p class="dish-desc">Émincé de filet de bœuf tendre, champignons sautés, oignons et sauce fromage fondu maison.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Philly Steak Sandwich (11 500 F)')">+ Commander ce plat</button>
         </div>
 
         <!-- PIZZAS & PATES -->
         <div class="menu-card-item reveal" data-cat="pizza-pasta">
-          <div class="card-top">
-            <h3 class="dish-title">Pinsa Champignons & Truffe</h3>
-            <span class="dish-price">15 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Pinsa Champignons & Truffe</h3>
+              <span class="dish-price">15 500 F</span>
+            </div>
+            <p class="dish-desc">Base crème de truffe, champignons de Paris, mozzarella fior di latte sur pâte pinsa croustillante.</p>
           </div>
-          <p class="dish-desc">Base crème de truffe, champignons de Paris, mozzarella fior di latte sur pâte pinsa croustillante.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Pinsa Truffe (15 500 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-1" data-cat="pizza-pasta">
-          <div class="card-top">
-            <h3 class="dish-title">Tagliatelles aux Truffes</h3>
-            <span class="dish-price">15 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Tagliatelles aux Truffes</h3>
+              <span class="dish-price">15 500 F</span>
+            </div>
+            <p class="dish-desc">Tagliatelles avec crème délicate à base de pâte de truffe et brisures de noix croquantes.</p>
           </div>
-          <p class="dish-desc">Tagliatelles avec crème délicate à base de pâte de truffe et brisures de noix croquantes.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Tagliatelles aux Truffes (15 500 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-2" data-cat="pizza-pasta">
-          <div class="card-top">
-            <h3 class="dish-title">Risotto aux Gambas</h3>
-            <span class="dish-price">17 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Risotto aux Gambas</h3>
+              <span class="dish-price">17 500 F</span>
+            </div>
+            <p class="dish-desc">Risotto crémeux lié au parmesan et persil, garni de gambas poêlées à l'ail.</p>
           </div>
-          <p class="dish-desc">Risotto crémeux lié au parmesan et persil, garni de gambas poêlées à l'ail.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Risotto aux Gambas (17 500 F)')">+ Commander ce plat</button>
         </div>
 
         <!-- DESSERTS -->
         <div class="menu-card-item reveal" data-cat="desserts">
-          <div class="card-top">
-            <h3 class="dish-title">Brioche Perdue</h3>
-            <span class="dish-price">7 000 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Brioche Perdue</h3>
+              <span class="dish-price">7 000 F</span>
+            </div>
+            <p class="dish-desc">Brioche dorée dodue, fruits rouges de saison, caramel au beurre salé maison et glace vanille.</p>
           </div>
-          <p class="dish-desc">Brioche dorée dodue, fruits rouges de saison, caramel au beurre salé maison et glace vanille.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Brioche Perdue (7 000 F)')">+ Commander ce plat</button>
         </div>
 
         <div class="menu-card-item reveal delay-1" data-cat="desserts">
-          <div class="card-top">
-            <h3 class="dish-title">Gaufre Very Bueno</h3>
-            <span class="dish-price">7 000 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Gaufre Very Bueno</h3>
+              <span class="dish-price">7 000 F</span>
+            </div>
+            <p class="dish-desc">Gaufre croustillante nappée de crème de noisette, brisures de Kinder Bueno, chantilly et glace.</p>
           </div>
-          <p class="dish-desc">Gaufre croustillante nappée de crème de noisette, brisures de Kinder Bueno, chantilly et glace.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Gaufre Very Bueno (7 000 F)')">+ Commander ce plat</button>
         </div>
 
         <!-- BAR -->
         <div class="menu-card-item reveal" data-cat="drinks">
-          <div class="card-top">
-            <h3 class="dish-title">Pornstar Martini</h3>
-            <span class="dish-price">7 000 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Pornstar Martini</h3>
+              <span class="dish-price">7 000 F</span>
+            </div>
+            <p class="dish-desc">Vodka, vanille, purée de fruit de la passion et son shot de prosecco pétillant.</p>
           </div>
-          <p class="dish-desc">Vodka, vanille, purée de fruit de la passion et son shot de prosecco pétillant.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Pornstar Martini (7 000 F)')">+ Commander ce cocktail</button>
         </div>
 
         <div class="menu-card-item reveal delay-1" data-cat="drinks">
-          <div class="card-top">
-            <h3 class="dish-title">Smoothie Urban Passion</h3>
-            <span class="dish-price">4 500 F</span>
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Smoothie Urban Passion</h3>
+              <span class="dish-price">4 500 F</span>
+            </div>
+            <p class="dish-desc">Bouye traditionnel (pain de singe sénégalais) mixé à la pulpe de fruit de la passion fraîche.</p>
           </div>
-          <p class="dish-desc">Bouye traditionnel (pain de singe sénégalais) mixé à la pulpe de fruit de la passion fraîche.</p>
+          <button class="quick-order-btn" onclick="addDishToOrder('Smoothie Urban Passion (4 500 F)')">+ Commander cette boisson</button>
         </div>
       </div>
     </div>
@@ -1135,7 +1401,7 @@
             <input type="text" id="orderNotes" class="form-control" placeholder="Ex: Sans oignons, sauce à part..." />
           </div>
 
-          <button type="submit" class="order-submit-btn reveal delay-4">
+          <button type="submit" class="order-submit-btn shimmer-btn reveal delay-4">
             Transmettre la commande via WhatsApp
           </button>
         </form>
@@ -1150,15 +1416,16 @@
         <div class="contact-brand-circle">UB</div>
         <h4 style="font-family:var(--font-serif); font-size:1.4rem; text-transform:uppercase; margin-bottom:0.5rem;">Urbanista Bistro</h4>
         <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">Le rendez-vous incontournable pour un brunch complet, un déjeuner gourmand ou un dîner chic au Point E, Dakar.</p>
-        <a href="https://www.instagram.com/urbanista.bistro" target="_blank" class="insta-badge-link">
-          📸 Suivez-nous sur Instagram @urbanista.bistro
+        
+        <a href="https://maps.google.com/?q=Urbanista+Bistro+Point+E+Dakar" target="_blank" class="gps-btn">
+          📍 Obtenir l'Itinéraire GPS (Google Maps)
         </a>
       </div>
 
       <div class="contact-col reveal delay-1">
         <h5>Adresse & Horaires</h5>
         <p>📍 Rue 7, Quartier Point E, Dakar</p>
-        <p>🕒 Ouvert tous les jours jusqu'à 23:00</p>
+        <p>🕒 Ouvert 7j/7 jusqu'à 23:00</p>
         <p>⭐ Noté 4.6/5 sur Google (365+ avis)</p>
       </div>
 
@@ -1166,6 +1433,7 @@
         <h5>Contact Direct</h5>
         <p>📞 <a href="tel:+221338690600">+221 33 869 06 00</a></p>
         <p>💬 <a href="https://wa.me/221338690600?text=Bonjour%20Urbanista%20Bistro%20Dakar,%20je%20souhaite%20des%20informations" target="_blank">Chatter sur WhatsApp</a></p>
+        <p>📸 <a href="https://www.instagram.com/urbanista.bistro" target="_blank">Instagram : @urbanista.bistro</a></p>
       </div>
     </div>
 
@@ -1174,17 +1442,46 @@
     </div>
   </footer>
 
-  <!-- JAVASCRIPT : INTERACTIONS, ONGLETS & SCROLL OBSERVER -->
+  <!-- BOUTON FLOTTANT WHATSAPP -->
+  <a href="https://wa.me/221338690600?text=Bonjour%20Urbanista%20Bistro%20Dakar,%20je%20souhaite%20une%20information" target="_blank" class="floating-wa-btn" aria-label="WhatsApp Urbanista Bistro Dakar" title="Écrivez-nous sur WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+
+  <!-- SCRIPT INTERACTIONS, STATUT DIRECT & COMMANDE RAPIDE -->
   <script>
-    // SCROLL REVEAL VIA INTERSECTION OBSERVER
+    // 1. STATUT EN TEMPS RÉEL (Fuseau horaire Dakar GMT)
+    function updateBistroStatus() {
+      const now = new Date();
+      // Dakar est sur UTC+0 (GMT) toute l'année
+      const utcHour = now.getUTCHours();
+      const utcMinutes = now.getUTCMinutes();
+      const currentTimeDecimal = utcHour + (utcMinutes / 60);
+
+      const statusDot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
+
+      // Horaires habituels : 08h30 à 23h00
+      const openTime = 8.5;  // 08:30
+      const closeTime = 23.0; // 23:00
+
+      if (currentTimeDecimal >= openTime && currentTimeDecimal < closeTime) {
+        statusDot.className = 'status-dot';
+        statusText.innerHTML = 'Actuellement Ouvert · Ferme à 23:00';
+      } else {
+        statusDot.className = 'status-dot closed';
+        statusText.innerHTML = 'Actuellement Fermé · Réouverture à 08:30';
+      }
+    }
+
+    // 2. SCROLL REVEAL OPTIMISÉ (IntersectionObserver)
     function initScrollReveal() {
       const revealElements = document.querySelectorAll('.reveal, .reveal-zoom');
-      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
-            // Désactive l'écoute une fois affiché pour éviter les re-calculs inutiles
             observer.unobserve(entry.target);
           }
         });
@@ -1196,7 +1493,7 @@
       revealElements.forEach(el => observer.observe(el));
     }
 
-    // Gestion du changement d'onglets
+    // 3. NAVIGATION PAR ONGLETS (SPA)
     function switchTab(tabId) {
       document.querySelectorAll('.tab-view').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
@@ -1208,12 +1505,22 @@
       if (targetNav) targetNav.classList.add('active');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Réinitialise les révélations pour l'onglet actif
       setTimeout(initScrollReveal, 100);
     }
 
-    // Filtres du Menu
+    // 4. AJOUT RAPIDE EN 1 CLIC DEPUIS LE MENU VERS LA COMMANDE
+    function addDishToOrder(dishName) {
+      switchTab('commande');
+      const textarea = document.getElementById('orderDetails');
+      if (textarea.value.trim() === '') {
+        textarea.value = '• ' + dishName;
+      } else {
+        textarea.value += '\n• ' + dishName;
+      }
+      textarea.focus();
+    }
+
+    // 5. FILTRAGE DU MENU
     function filterMenu(cat, btn) {
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -1221,7 +1528,7 @@
       const items = document.querySelectorAll('.menu-card-item');
       items.forEach(item => {
         if (cat === 'all' || item.getAttribute('data-cat') === cat) {
-          item.style.display = 'block';
+          item.style.display = 'flex';
           item.classList.add('is-visible');
         } else {
           item.style.display = 'none';
@@ -1229,7 +1536,7 @@
       });
     }
 
-    // Sélection du mode de commande
+    // 6. CHOIX DU MODE (Sur place ou à emporter)
     let currentMode = 'Sur place (Au restaurant)';
     function selectServiceMode(mode) {
       const cardDinein = document.getElementById('card-dinein');
@@ -1252,7 +1559,7 @@
       }
     }
 
-    // Envoi de la commande vers WhatsApp
+    // 7. TRANSMISSION WHATSAPP
     function submitOrder(e) {
       e.preventDefault();
 
@@ -1288,9 +1595,11 @@
       window.open(`https://wa.me/${restaurantPhone}?text=${encodedMessage}`, '_blank');
     }
 
-    // Lancement au chargement du DOM
+    // Initialisation au chargement
     document.addEventListener('DOMContentLoaded', () => {
       initScrollReveal();
+      updateBistroStatus();
+      setInterval(updateBistroStatus, 60000); // Mise à jour du statut chaque minute
     });
   </script>
 </body>
