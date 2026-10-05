@@ -22,8 +22,9 @@
       
       --gold-wave: #E2C9B8;
       --dark-bg: #141111;
-      --dark-card: rgba(31, 25, 25, 0.75);
+      --dark-card: rgba(31, 25, 25, 0.85);
       --dark-surface: #261F1F;
+      --dark-surface-elevated: #2F2626;
       --text-light: #FFFFFF;
       --text-muted: #D1C5C3;
       --font-serif: 'Playfair Display', Georgia, serif;
@@ -57,7 +58,7 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(20, 17, 17, 0.92);
+      background: rgba(20, 17, 17, 0.94);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(168, 104, 102, 0.25);
     }
@@ -179,6 +180,9 @@
       font-weight: 600;
       box-shadow: 0 4px 15px var(--rose-glow);
       transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .nav-btn-order:hover {
@@ -186,7 +190,16 @@
       transform: translateY(-2px);
     }
 
-    /* EFFET SHIMMER SUR LES BOUTONS PRINCIPAUX */
+    .badge-count {
+      background: #fff;
+      color: var(--rose-terre-deep);
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    /* EFFET SHIMMER */
     .shimmer-btn {
       position: relative;
       overflow: hidden;
@@ -209,10 +222,10 @@
       30%, 100% { left: 140%; }
     }
 
-    /* CONTENEUR DES PAGES / ONGLETS */
+    /* CONTENEUR ONGLETS */
     .tab-view {
       display: none;
-      animation: fadeIn 0.4s ease forwards;
+      animation: fadeIn 0.35s ease forwards;
     }
 
     .tab-view.active {
@@ -224,12 +237,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* SCROLL REVEAL HAUT DE GAMME */
+    /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform;
     }
 
@@ -240,10 +253,9 @@
 
     .reveal-zoom {
       opacity: 0;
-      transform: scale(0.95) translateY(20px);
-      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
+      transform: scale(0.96) translateY(20px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .reveal-zoom.is-visible {
@@ -296,7 +308,6 @@
       z-index: 2;
     }
 
-    /* BADGE STATUT EN DIRECT DAKAR */
     .live-status-badge {
       display: inline-flex;
       align-items: center;
@@ -624,17 +635,54 @@
     }
 
     /* =========================================
-       PAGE 2 : MENU DÉTAILLÉ
+       PAGE 2 : MENU AVEC RECHERCHE EN DIRECT
     ========================================= */
     .menu-page {
-      padding: 4rem 1.5rem 6rem;
+      padding: 3.5rem 1.5rem 7rem;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     .menu-page-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    /* BARRE DE RECHERCHE EN DIRECT */
+    .menu-search-wrap {
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+
+    .menu-search-input {
+      width: 100%;
+      padding: 0.9rem 1.2rem 0.9rem 3rem;
+      border-radius: 50px;
+      background: rgba(38, 31, 31, 0.8);
+      border: 1px solid rgba(168, 104, 102, 0.4);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .menu-search-input:focus {
+      border-color: var(--gold-wave);
+      box-shadow: 0 0 15px var(--rose-glow);
+    }
+
+    .search-icon-svg {
+      position: absolute;
+      left: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      fill: var(--gold-wave);
+      pointer-events: none;
     }
 
     .category-filter-bar {
@@ -642,7 +690,7 @@
       justify-content: center;
       gap: 0.6rem;
       flex-wrap: wrap;
-      margin-bottom: 3rem;
+      margin-bottom: 2.8rem;
     }
 
     .cat-btn {
@@ -680,12 +728,27 @@
       justify-content: space-between;
       backdrop-filter: blur(12px);
       transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
     }
 
     .menu-card-item:hover {
       transform: translateY(-4px);
       border-color: var(--rose-terre);
       box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    }
+
+    .signature-badge {
+      position: absolute;
+      top: -10px;
+      right: 18px;
+      background: linear-gradient(135deg, var(--gold-wave), #B88E52);
+      color: #141111;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      border-radius: 20px;
     }
 
     .card-top {
@@ -717,7 +780,6 @@
       margin-bottom: 1.2rem;
     }
 
-    /* BOUTON D'AJOUT RAPIDE VERS COMMANDE */
     .quick-order-btn {
       align-self: flex-start;
       background: rgba(168, 104, 102, 0.15);
@@ -743,11 +805,11 @@
     }
 
     /* =========================================
-       PAGE 3 : COMMANDE À DISTANCE
+       PAGE 3 : COMMANDE AVEC TICKET INTERACTIF
     ========================================= */
     .order-page {
-      padding: 4rem 1.5rem 6rem;
-      max-width: 850px;
+      padding: 3.5rem 1.5rem 6rem;
+      max-width: 920px;
       margin: 0 auto;
     }
 
@@ -760,13 +822,161 @@
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
     }
 
+    /* TICKET INTERACTIF DE COMMANDE */
+    .ticket-container {
+      background: rgba(20, 17, 17, 0.85);
+      border: 1px dashed rgba(168, 104, 102, 0.45);
+      border-radius: 14px;
+      padding: 1.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 1rem;
+    }
+
+    .ticket-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--gold-wave);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .ticket-clear-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .ticket-empty-msg {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding: 1.5rem 0;
+    }
+
+    .ticket-items-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .ticket-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .ticket-item-info {
+      flex: 1;
+    }
+
+    .ticket-item-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .ticket-item-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .ticket-qty-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-qty {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(168, 104, 102, 0.4);
+      background: var(--dark-surface);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .btn-qty:hover {
+      background: var(--rose-terre);
+    }
+
+    .ticket-price-total {
+      font-weight: 700;
+      color: var(--gold-wave);
+      font-size: 0.9rem;
+      min-width: 80px;
+      text-align: right;
+    }
+
+    .ticket-footer-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(168, 104, 102, 0.4);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .ticket-total-num {
+      color: var(--gold-wave);
+      font-size: 1.25rem;
+      font-family: var(--font-serif);
+    }
+
+    /* PASTILLES CUISSON & ACCOMPAGNEMENT RAPIDE */
+    .pill-select-group {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
+
+    .tag-pill {
+      background: var(--dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tag-pill.active {
+      background: var(--rose-terre);
+      color: #fff;
+      border-color: var(--rose-terre);
+    }
+
     .form-group {
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.5rem;
     }
 
     .form-group label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--gold-wave);
@@ -795,7 +1005,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.2rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
     }
 
     .mode-card {
@@ -834,7 +1044,7 @@
       width: 100%;
       background: var(--rose-terre);
       color: #fff;
-      padding: 1.1rem;
+      padding: 1.15rem;
       border: none;
       border-radius: 50px;
       font-size: 0.95rem;
@@ -844,12 +1054,60 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 10px 30px var(--rose-glow);
-      margin-top: 1rem;
+      margin-top: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .order-submit-btn:hover {
       background: var(--rose-terre-dark);
       transform: translateY(-2px);
+    }
+
+    /* BARRE FLOTTANTE PANIER / SELECTION (Mobile & Desktop) */
+    .floating-summary-bar {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: rgba(38, 31, 31, 0.95);
+      border: 1px solid var(--rose-terre);
+      backdrop-filter: blur(16px);
+      padding: 0.75rem 1.4rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      z-index: 998;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .floating-summary-bar.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .floating-bar-info {
+      font-size: 0.85rem;
+      color: #fff;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .floating-bar-btn {
+      background: var(--rose-terre);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
     /* FOOTER & CONTACT */
@@ -930,12 +1188,12 @@
       color: #777;
     }
 
-    /* BOUTON FLOTTANT WHATSAPP (ACCÈS RAPIDE) */
+    /* BOUTON FLOTTANT WHATSAPP */
     .floating-wa-btn {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      z-index: 999;
+      z-index: 997;
       background: #25D366;
       color: #fff;
       width: 56px;
@@ -978,11 +1236,15 @@
       .order-box {
         padding: 2rem 1.2rem;
       }
+      .floating-summary-bar {
+        width: 90%;
+        justify-content: space-between;
+      }
       .floating-wa-btn {
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
+        bottom: 85px;
+        right: 18px;
+        width: 48px;
+        height: 48px;
       }
     }
   </style>
@@ -1000,7 +1262,7 @@
       <ul class="nav-links">
         <li><button class="nav-link active" onclick="switchTab('accueil')" id="nav-accueil">Accueil</button></li>
         <li><button class="nav-link" onclick="switchTab('menu')" id="nav-menu">Le Menu</button></li>
-        <li><button class="nav-link" onclick="switchTab('commande')" id="nav-commande">Commander</button></li>
+        <li><button class="nav-link" onclick="switchTab('commande')" id="nav-commande">Commander <span class="badge-count" id="navBadgeCount" style="display:none;">0</span></button></li>
       </ul>
 
       <!-- Actions à droite avec Logo Instagram direct & Shimmer -->
@@ -1010,7 +1272,10 @@
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
         </a>
-        <button class="nav-btn-order shimmer-btn" onclick="switchTab('commande')">Commander</button>
+        <button class="nav-btn-order shimmer-btn" onclick="switchTab('commande')">
+          <span>Commander</span>
+          <span class="badge-count" id="headerBadgeCount" style="display:none;">0</span>
+        </button>
       </div>
     </div>
   </header>
@@ -1114,13 +1379,21 @@
   </div>
 
   <!-- ========================================================
-       ONGLET 2 : MENU DU RESTAURANT
+       ONGLET 2 : LE MENU (AVEC LIVE SEARCH & SÉLECTION RAPIDE)
   ======================================================== -->
   <div id="tab-menu" class="tab-view">
     <div class="menu-page">
       <div class="menu-page-header">
         <h1 class="section-title reveal" style="margin-bottom:0.5rem;">La Carte Urbanista</h1>
-        <p class="reveal delay-1" style="color:var(--text-muted); text-transform:uppercase; letter-spacing:2px; font-size:0.85rem;">Ingrédients frais & recettes maisons</p>
+        <p class="reveal delay-1" style="color:var(--text-muted); text-transform:uppercase; letter-spacing:2px; font-size:0.85rem;">Ingrédients frais & créations maison</p>
+      </div>
+
+      <!-- BARRE DE RECHERCHE EN DIRECT -->
+      <div class="menu-search-wrap reveal delay-1">
+        <svg class="search-icon-svg" viewBox="0 0 24 24">
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <input type="text" id="menuSearch" class="menu-search-input" placeholder="Rechercher un plat, un ingrédient (ex: truffe, saumon, burger)..." oninput="handleMenuSearch()" />
       </div>
 
       <!-- Filtres -->
@@ -1135,9 +1408,10 @@
       </div>
 
       <!-- Grille complète des plats -->
-      <div class="items-grid">
+      <div class="items-grid" id="menuItemsGrid">
         <!-- BRUNCH -->
-        <div class="menu-card-item reveal" data-cat="brunch">
+        <div class="menu-card-item reveal" data-cat="brunch" data-name="Formule Urbanista" data-price="14500">
+          <span class="signature-badge">Coup de cœur</span>
           <div>
             <div class="card-top">
               <h3 class="dish-title">Formule Urbanista</h3>
@@ -1145,10 +1419,10 @@
             </div>
             <p class="dish-desc">2 œufs au choix, 2 pancakes, 3 crispy poulet, cream cheese aux herbes, chips maison, viennoiserie, confiture, salade, fruit, jus pressé ou local, boisson chaude.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Formule Urbanista (14 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Formule Urbanista', 14500)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-1" data-cat="brunch">
+        <div class="menu-card-item reveal delay-1" data-cat="brunch" data-name="Formule Dreamy" data-price="15000">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Formule Dreamy</h3>
@@ -1156,10 +1430,10 @@
             </div>
             <p class="dish-desc">Saumon fumé, 3 œufs brouillés, cream cheese maison aux herbes, chips maison, pain au levain, betteraves bouillies, salade, beurre, jus pressé/local, boisson chaude.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Formule Dreamy (15 000 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Formule Dreamy', 15000)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-2" data-cat="brunch">
+        <div class="menu-card-item reveal delay-2" data-cat="brunch" data-name="Healthy & Veggie" data-price="14000">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Healthy & Veggie</h3>
@@ -1167,10 +1441,10 @@
             </div>
             <p class="dish-desc">Avocado pain au levain & feta, bowl de quinoa, légumes rôtis, houmous, 2 pancakes complètes, pot de chia-mangue, smoothie vert, boisson chaude.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Formule Healthy & Veggie (14 000 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Healthy & Veggie', 14000)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-3" data-cat="brunch">
+        <div class="menu-card-item reveal delay-3" data-cat="brunch" data-name="Formule Oriental" data-price="15000">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Formule Oriental</h3>
@@ -1178,11 +1452,11 @@
             </div>
             <p class="dish-desc">Assiette de foul, houmous, 2 œufs au plat, halloum grillé, labneh, mini manaiches zaatar, légumes, confiture, fruit, boisson chaude.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Formule Oriental (15 000 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Formule Oriental', 15000)">+ Ajouter au ticket</button>
         </div>
 
         <!-- ENTREES & SALADES -->
-        <div class="menu-card-item reveal" data-cat="starters">
+        <div class="menu-card-item reveal" data-cat="starters" data-name="Go Big Combo" data-price="17500">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Go Big Combo</h3>
@@ -1190,10 +1464,10 @@
             </div>
             <p class="dish-desc">Assiette mixte de BBQ wings, mozzarella sticks, calamari sticks, crispy poulet et frites, servi avec sauce signature urbanista.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Go Big Combo (17 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Go Big Combo', 17500)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-1" data-cat="starters">
+        <div class="menu-card-item reveal delay-1" data-cat="starters" data-name="Salade Burrata" data-price="10500">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Salade Burrata</h3>
@@ -1201,10 +1475,10 @@
             </div>
             <p class="dish-desc">Fromage burrata frais, concombres croquants, tomates cerises, croûtons croustillants et sauce pesto maison.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Salade Burrata (10 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Salade Burrata', 10500)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-2" data-cat="starters">
+        <div class="menu-card-item reveal delay-2" data-cat="starters" data-name="Gaufre Salée" data-price="8000">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Gaufre Salée</h3>
@@ -1212,11 +1486,12 @@
             </div>
             <p class="dish-desc">Poulet pané doré, cheddar fondant, salade, tomate, oignons caramélisés, cornichons et œuf au plat.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Gaufre Salée (8 000 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Gaufre Salée', 8000)">+ Ajouter au ticket</button>
         </div>
 
         <!-- PLATS & BURGERS -->
-        <div class="menu-card-item reveal" data-cat="platters">
+        <div class="menu-card-item reveal" data-cat="platters" data-name="Médaillon Urbanista" data-price="24000">
+          <span class="signature-badge">Signature</span>
           <div>
             <div class="card-top">
               <h3 class="dish-title">Médaillon Urbanista</h3>
@@ -1224,10 +1499,10 @@
             </div>
             <p class="dish-desc">300g de filet de bœuf grillé tendre et savoureux, cuisson au choix, avec garniture au choix.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Médaillon Urbanista (24 000 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Médaillon Urbanista', 24000)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-1" data-cat="platters">
+        <div class="menu-card-item reveal delay-1" data-cat="platters" data-name="Thiof Entier Grillé" data-price="14500">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Thiof Entier Grillé</h3>
@@ -1235,10 +1510,10 @@
             </div>
             <p class="dish-desc">Thiof frais local mariné aux herbes et épices dakarois, accompagné de riz blanc, frites ou légumes sautés.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Thiof Entier Grillé (14 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Thiof Entier Grillé', 14500)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-2" data-cat="platters">
+        <div class="menu-card-item reveal delay-2" data-cat="platters" data-name="Burger T Angus" data-price="12500">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Burger T (Angus)</h3>
@@ -1246,10 +1521,10 @@
             </div>
             <p class="dish-desc">Steak de bœuf Angus, oignons caramélisés, fromage fondu spécial, cornichons, sauce TK et frites fraîches.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Burger T Angus (12 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Burger T (Angus)', 12500)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-3" data-cat="platters">
+        <div class="menu-card-item reveal delay-3" data-cat="platters" data-name="Philly Steak Sandwich" data-price="11500">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Philly Steak Sandwich</h3>
@@ -1257,11 +1532,23 @@
             </div>
             <p class="dish-desc">Émincé de filet de bœuf tendre, champignons sautés, oignons et sauce fromage fondu maison.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Philly Steak Sandwich (11 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Philly Steak Sandwich', 11500)">+ Ajouter au ticket</button>
+        </div>
+
+        <div class="menu-card-item reveal delay-4" data-cat="platters" data-name="Smash Burger" data-price="6500">
+          <div>
+            <div class="card-top">
+              <h3 class="dish-title">Smash Burger</h3>
+              <span class="dish-price">6 500 F</span>
+            </div>
+            <p class="dish-desc">100g de viande hachée de bœuf smashée, tomates fraîches et salade. Servi avec des frites.</p>
+          </div>
+          <button class="quick-order-btn" onclick="addToOrder('Smash Burger', 6500)">+ Ajouter au ticket</button>
         </div>
 
         <!-- PIZZAS & PATES -->
-        <div class="menu-card-item reveal" data-cat="pizza-pasta">
+        <div class="menu-card-item reveal" data-cat="pizza-pasta" data-name="Pinsa Champignons & Truffe" data-price="15500">
+          <span class="signature-badge">Must-Try</span>
           <div>
             <div class="card-top">
               <h3 class="dish-title">Pinsa Champignons & Truffe</h3>
@@ -1269,10 +1556,10 @@
             </div>
             <p class="dish-desc">Base crème de truffe, champignons de Paris, mozzarella fior di latte sur pâte pinsa croustillante.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Pinsa Truffe (15 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Pinsa Truffe', 15500)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-1" data-cat="pizza-pasta">
+        <div class="menu-card-item reveal delay-1" data-cat="pizza-pasta" data-name="Tagliatelles aux Truffes" data-price="15500">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Tagliatelles aux Truffes</h3>
@@ -1280,10 +1567,10 @@
             </div>
             <p class="dish-desc">Tagliatelles avec crème délicate à base de pâte de truffe et brisures de noix croquantes.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Tagliatelles aux Truffes (15 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Tagliatelles aux Truffes', 15500)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-2" data-cat="pizza-pasta">
+        <div class="menu-card-item reveal delay-2" data-cat="pizza-pasta" data-name="Risotto aux Gambas" data-price="17500">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Risotto aux Gambas</h3>
@@ -1291,11 +1578,11 @@
             </div>
             <p class="dish-desc">Risotto crémeux lié au parmesan et persil, garni de gambas poêlées à l'ail.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Risotto aux Gambas (17 500 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Risotto aux Gambas', 17500)">+ Ajouter au ticket</button>
         </div>
 
         <!-- DESSERTS -->
-        <div class="menu-card-item reveal" data-cat="desserts">
+        <div class="menu-card-item reveal" data-cat="desserts" data-name="Brioche Perdue" data-price="7000">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Brioche Perdue</h3>
@@ -1303,10 +1590,10 @@
             </div>
             <p class="dish-desc">Brioche dorée dodue, fruits rouges de saison, caramel au beurre salé maison et glace vanille.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Brioche Perdue (7 000 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Brioche Perdue', 7000)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-1" data-cat="desserts">
+        <div class="menu-card-item reveal delay-1" data-cat="desserts" data-name="Gaufre Very Bueno" data-price="7000">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Gaufre Very Bueno</h3>
@@ -1314,11 +1601,11 @@
             </div>
             <p class="dish-desc">Gaufre croustillante nappée de crème de noisette, brisures de Kinder Bueno, chantilly et glace.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Gaufre Very Bueno (7 000 F)')">+ Commander ce plat</button>
+          <button class="quick-order-btn" onclick="addToOrder('Gaufre Very Bueno', 7000)">+ Ajouter au ticket</button>
         </div>
 
         <!-- BAR -->
-        <div class="menu-card-item reveal" data-cat="drinks">
+        <div class="menu-card-item reveal" data-cat="drinks" data-name="Pornstar Martini" data-price="7000">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Pornstar Martini</h3>
@@ -1326,10 +1613,10 @@
             </div>
             <p class="dish-desc">Vodka, vanille, purée de fruit de la passion et son shot de prosecco pétillant.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Pornstar Martini (7 000 F)')">+ Commander ce cocktail</button>
+          <button class="quick-order-btn" onclick="addToOrder('Pornstar Martini', 7000)">+ Ajouter au ticket</button>
         </div>
 
-        <div class="menu-card-item reveal delay-1" data-cat="drinks">
+        <div class="menu-card-item reveal delay-1" data-cat="drinks" data-name="Smoothie Urban Passion" data-price="4500">
           <div>
             <div class="card-top">
               <h3 class="dish-title">Smoothie Urban Passion</h3>
@@ -1337,24 +1624,47 @@
             </div>
             <p class="dish-desc">Bouye traditionnel (pain de singe sénégalais) mixé à la pulpe de fruit de la passion fraîche.</p>
           </div>
-          <button class="quick-order-btn" onclick="addDishToOrder('Smoothie Urban Passion (4 500 F)')">+ Commander cette boisson</button>
+          <button class="quick-order-btn" onclick="addToOrder('Smoothie Urban Passion', 4500)">+ Ajouter au ticket</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ========================================================
-       ONGLET 3 : COMMANDE À DISTANCE
+       ONGLET 3 : COMMANDE AVEC TICKET EN DIRECT
   ======================================================== -->
   <div id="tab-commande" class="tab-view">
     <div class="order-page">
       <div class="order-box reveal">
-        <h2 class="section-title reveal delay-1" style="margin-bottom: 0.5rem; text-align:center;">Commande à Distance</h2>
-        <p class="reveal delay-2" style="color:var(--text-muted); text-align:center; font-size:0.9rem; margin-bottom:2.5rem;">
-          Passez commande à l'avance. Choisissez si vous mangez sur place ou venez récupérer votre commande.
+        <h2 class="section-title reveal delay-1" style="margin-bottom: 0.5rem; text-align:center;">Votre Commande</h2>
+        <p class="reveal delay-2" style="color:var(--text-muted); text-align:center; font-size:0.9rem; margin-bottom:2rem;">
+          Vérifiez vos plats, choisissez votre mode de service et transmettez votre commande en 1 clic.
         </p>
 
+        <!-- TICKET INTERACTIF DE COMMANDE -->
+        <div class="ticket-container reveal delay-2">
+          <div class="ticket-header">
+            <span class="ticket-title">🧾 Ticket Récapitulatif</span>
+            <button type="button" class="ticket-clear-btn" onclick="clearOrderTicket()">Vider le ticket</button>
+          </div>
+
+          <div id="ticketEmptyState" class="ticket-empty-msg">
+            Votre ticket est vide.<br>
+            <span style="font-size:0.8rem; color:var(--gold-wave); cursor:pointer;" onclick="switchTab('menu')">👉 Consulter le menu pour ajouter des plats</span>
+          </div>
+
+          <ul class="ticket-items-list" id="ticketList">
+            <!-- Rempli dynamiquement en JS -->
+          </ul>
+
+          <div class="ticket-footer-total" id="ticketFooterTotal" style="display:none;">
+            <span>Total Indicatif :</span>
+            <span class="ticket-total-num" id="ticketGrandTotal">0 F CFA</span>
+          </div>
+        </div>
+
         <form id="remoteOrderForm" onsubmit="submitOrder(event)">
+          <!-- Choix Service -->
           <div class="mode-selector reveal delay-2">
             <label class="mode-card selected" id="card-dinein" onclick="selectServiceMode('dinein')">
               <input type="radio" name="service_mode" value="Sur place (Au restaurant)" checked />
@@ -1371,6 +1681,7 @@
             </label>
           </div>
 
+          <!-- Coordonnées -->
           <div class="form-group reveal delay-2">
             <label>Votre Nom complet *</label>
             <input type="text" id="custName" class="form-control" placeholder="Ex: Jean Mendy" required />
@@ -1382,7 +1693,7 @@
           </div>
 
           <div class="form-group reveal delay-3" id="field-table">
-            <label>Numéro de Table (facultatif si déjà assis)</label>
+            <label>Numéro de Table (si déjà assis au bistro)</label>
             <input type="text" id="tableNumber" class="form-control" placeholder="Ex: Table 4 / Terrasse" />
           </div>
 
@@ -1391,22 +1702,44 @@
             <input type="time" id="pickupTime" class="form-control" />
           </div>
 
+          <!-- Options rapides : Cuisson & Accompagnements en pastilles -->
           <div class="form-group reveal delay-3">
-            <label>Plats et Boissons souhaités *</label>
-            <textarea id="orderDetails" class="form-control" rows="4" placeholder="Ex: 1x Burger T saignant avec frites, 1x Formule Urbanista (œufs au plat, bissap), 1x Pornstar Martini" required></textarea>
+            <label>Options rapides de cuisson (si viande) :</label>
+            <div class="pill-select-group">
+              <span class="tag-pill" onclick="toggleOptionPill(this, 'Cuisson : Saignant')">🥩 Saignant</span>
+              <span class="tag-pill" onclick="toggleOptionPill(this, 'Cuisson : À point')">🥩 À point</span>
+              <span class="tag-pill" onclick="toggleOptionPill(this, 'Cuisson : Bien cuit')">🥩 Bien cuit</span>
+            </div>
+          </div>
+
+          <div class="form-group reveal delay-3">
+            <label>Accompagnement souhaité :</label>
+            <div class="pill-select-group">
+              <span class="tag-pill" onclick="toggleOptionPill(this, 'Accompagnement : Frites maison')">🍟 Frites maison</span>
+              <span class="tag-pill" onclick="toggleOptionPill(this, 'Accompagnement : Riz basmati')">🍚 Riz basmati</span>
+              <span class="tag-pill" onclick="toggleOptionPill(this, 'Accompagnement : Légumes sautés')">🥗 Légumes sautés</span>
+              <span class="tag-pill" onclick="toggleOptionPill(this, 'Accompagnement : Alloco')">🍌 Alloco</span>
+            </div>
           </div>
 
           <div class="form-group reveal delay-4">
-            <label>Instructions particulières / Cuisson / Allergies</label>
-            <input type="text" id="orderNotes" class="form-control" placeholder="Ex: Sans oignons, sauce à part..." />
+            <label>Précisions supplémentaires / Allergies / Autres plats non listés</label>
+            <input type="text" id="orderNotes" class="form-control" placeholder="Ex: Sauce poivre à part, sans oignons..." />
           </div>
 
           <button type="submit" class="order-submit-btn shimmer-btn reveal delay-4">
-            Transmettre la commande via WhatsApp
+            <span>Transmettre la commande sur WhatsApp</span>
+            <span>💬</span>
           </button>
         </form>
       </div>
     </div>
+  </div>
+
+  <!-- BARRE FLOTTANTE RÉCAPITULATIVE (Visible dès qu'un plat est sélectionné) -->
+  <div class="floating-summary-bar" id="floatingBar">
+    <div class="floating-bar-info" id="floatingBarText">1 plat sélectionné</div>
+    <button class="floating-bar-btn" onclick="switchTab('commande')">Voir mon ticket →</button>
   </div>
 
   <!-- CONTACT / FOOTER -->
@@ -1449,12 +1782,11 @@
     </svg>
   </a>
 
-  <!-- SCRIPT INTERACTIONS, STATUT DIRECT & COMMANDE RAPIDE -->
+  <!-- SCRIPT LOGIQUE : TICKET DE COMMANDE, LIVE SEARCH & WHATSAPP -->
   <script>
     // 1. STATUT EN TEMPS RÉEL (Fuseau horaire Dakar GMT)
     function updateBistroStatus() {
       const now = new Date();
-      // Dakar est sur UTC+0 (GMT) toute l'année
       const utcHour = now.getUTCHours();
       const utcMinutes = now.getUTCMinutes();
       const currentTimeDecimal = utcHour + (utcMinutes / 60);
@@ -1462,7 +1794,6 @@
       const statusDot = document.getElementById('statusDot');
       const statusText = document.getElementById('statusText');
 
-      // Horaires habituels : 08h30 à 23h00
       const openTime = 8.5;  // 08:30
       const closeTime = 23.0; // 23:00
 
@@ -1486,7 +1817,7 @@
           }
         });
       }, {
-        threshold: 0.12,
+        threshold: 0.1,
         rootMargin: '0px 0px -40px 0px'
       });
 
@@ -1508,20 +1839,25 @@
       setTimeout(initScrollReveal, 100);
     }
 
-    // 4. AJOUT RAPIDE EN 1 CLIC DEPUIS LE MENU VERS LA COMMANDE
-    function addDishToOrder(dishName) {
-      switchTab('commande');
-      const textarea = document.getElementById('orderDetails');
-      if (textarea.value.trim() === '') {
-        textarea.value = '• ' + dishName;
-      } else {
-        textarea.value += '\n• ' + dishName;
-      }
-      textarea.focus();
+    // 4. RECHERCHE EN DIRECT DANS LE MENU (LIVE SEARCH)
+    function handleMenuSearch() {
+      const query = document.getElementById('menuSearch').value.toLowerCase().trim();
+      const items = document.querySelectorAll('.menu-card-item');
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (text.includes(query)) {
+          item.style.display = 'flex';
+          item.classList.add('is-visible');
+        } else {
+          item.style.display = 'none';
+        }
+      });
     }
 
-    // 5. FILTRAGE DU MENU
+    // 5. FILTRAGE DU MENU PAR BOUTONS
     function filterMenu(cat, btn) {
+      document.getElementById('menuSearch').value = '';
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -1536,7 +1872,125 @@
       });
     }
 
-    // 6. CHOIX DU MODE (Sur place ou à emporter)
+    // 6. GESTION DU TICKET DE COMMANDE INTERACTIF
+    let orderTicket = [];
+    let selectedOptions = [];
+
+    function addToOrder(name, price) {
+      const existing = orderTicket.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        orderTicket.push({ name: name, price: price, qty: 1 });
+      }
+      renderTicket();
+      updateBadges();
+
+      // Feedback visuel court
+      const btn = event.target;
+      const originalText = btn.innerText;
+      btn.innerText = '✓ Ajouté !';
+      btn.style.background = 'var(--rose-terre)';
+      btn.style.color = '#fff';
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 900);
+    }
+
+    function changeQty(index, delta) {
+      orderTicket[index].qty += delta;
+      if (orderTicket[index].qty <= 0) {
+        orderTicket.splice(index, 1);
+      }
+      renderTicket();
+      updateBadges();
+    }
+
+    function clearOrderTicket() {
+      orderTicket = [];
+      renderTicket();
+      updateBadges();
+    }
+
+    function renderTicket() {
+      const listEl = document.getElementById('ticketList');
+      const emptyState = document.getElementById('ticketEmptyState');
+      const footerTotal = document.getElementById('ticketFooterTotal');
+      const grandTotalEl = document.getElementById('ticketGrandTotal');
+
+      listEl.innerHTML = '';
+
+      if (orderTicket.length === 0) {
+        emptyState.style.display = 'block';
+        footerTotal.style.display = 'none';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      footerTotal.style.display = 'flex';
+
+      let total = 0;
+      orderTicket.forEach((item, index) => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+
+        const li = document.createElement('li');
+        li.className = 'ticket-row';
+        li.innerHTML = `
+          <div class="ticket-item-info">
+            <div class="ticket-item-name">${item.name}</div>
+            <div class="ticket-item-sub">${item.price.toLocaleString()} F unitaire</div>
+          </div>
+          <div class="ticket-qty-control">
+            <button type="button" class="btn-qty" onclick="changeQty(${index}, -1)">−</button>
+            <span style="font-weight:700; min-width:20px; text-align:center;">${item.qty}</span>
+            <button type="button" class="btn-qty" onclick="changeQty(${index}, 1)">+</button>
+          </div>
+          <div class="ticket-price-total">${itemTotal.toLocaleString()} F</div>
+        `;
+        listEl.appendChild(li);
+      });
+
+      grandTotalEl.innerText = `${total.toLocaleString()} F CFA`;
+    }
+
+    function updateBadges() {
+      const totalCount = orderTicket.reduce((acc, curr) => acc + curr.qty, 0);
+      const totalSum = orderTicket.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
+
+      const navBadge = document.getElementById('navBadgeCount');
+      const headerBadge = document.getElementById('headerBadgeCount');
+      const floatingBar = document.getElementById('floatingBar');
+      const floatingBarText = document.getElementById('floatingBarText');
+
+      if (totalCount > 0) {
+        navBadge.innerText = totalCount;
+        navBadge.style.display = 'inline-block';
+        headerBadge.innerText = totalCount;
+        headerBadge.style.display = 'inline-block';
+
+        floatingBarText.innerText = `🍔 ${totalCount} plat${totalCount > 1 ? 's' : ''} · ${totalSum.toLocaleString()} F CFA`;
+        floatingBar.classList.add('show');
+      } else {
+        navBadge.style.display = 'none';
+        headerBadge.style.display = 'none';
+        floatingBar.classList.remove('show');
+      }
+    }
+
+    // 7. PASTILLES OPTIONS RAPIDES (Cuissons & Accompagnements)
+    function toggleOptionPill(pill, value) {
+      pill.classList.toggle('active');
+      if (pill.classList.contains('active')) {
+        selectedOptions.push(value);
+      } else {
+        selectedOptions = selectedOptions.filter(item => item !== value);
+      }
+    }
+
+    // 8. CHOIX DU MODE SERVICE
     let currentMode = 'Sur place (Au restaurant)';
     function selectServiceMode(mode) {
       const cardDinein = document.getElementById('card-dinein');
@@ -1559,16 +2013,20 @@
       }
     }
 
-    // 7. TRANSMISSION WHATSAPP
+    // 9. TRANSMISSION WHATSAPP
     function submitOrder(e) {
       e.preventDefault();
 
       const name = document.getElementById('custName').value.trim();
       const phone = document.getElementById('custPhone').value.trim();
-      const details = document.getElementById('orderDetails').value.trim();
       const notes = document.getElementById('orderNotes').value.trim();
       const table = document.getElementById('tableNumber').value.trim();
       const time = document.getElementById('pickupTime').value.trim();
+
+      if (orderTicket.length === 0 && !notes) {
+        alert("Veuillez sélectionner au moins un plat dans le menu ou préciser votre demande dans les notes.");
+        return;
+      }
 
       let message = `*NOUVELLE COMMANDE - URBANISTA BISTRO*\n`;
       message += `------------------------------------\n`;
@@ -1583,10 +2041,25 @@
       }
 
       message += `------------------------------------\n`;
-      message += `*Commande :*\n${details}\n`;
+      message += `*DÉTAIL DU TICKET :*\n`;
+
+      let grandTotal = 0;
+      if (orderTicket.length > 0) {
+        orderTicket.forEach(item => {
+          const itemTotal = item.price * item.qty;
+          grandTotal += itemTotal;
+          message += `• ${item.qty}x ${item.name} (${itemTotal.toLocaleString()} F CFA)\n`;
+        });
+        message += `------------------------------------\n`;
+        message += `*TOTAL ESTIMÉ : ${grandTotal.toLocaleString()} F CFA*\n`;
+      }
+
+      if (selectedOptions.length > 0) {
+        message += `\n*Options choisies :*\n${selectedOptions.map(opt => '✓ ' + opt).join('\n')}\n`;
+      }
 
       if (notes) {
-        message += `\n*Précisions :* ${notes}\n`;
+        message += `\n*Précisions client :* ${notes}\n`;
       }
 
       const encodedMessage = encodeURIComponent(message);
@@ -1599,7 +2072,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       initScrollReveal();
       updateBistroStatus();
-      setInterval(updateBistroStatus, 60000); // Mise à jour du statut chaque minute
+      setInterval(updateBistroStatus, 60000);
+      renderTicket();
     });
   </script>
 </body>
