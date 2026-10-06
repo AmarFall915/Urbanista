@@ -329,7 +329,7 @@
     .delay-4 { transition-delay: 0.4s; }
 
     /* =========================================
-       PAGE 1 : ACCUEIL & SLIDER OPTIMISÉ NET & RAPIDE
+       PAGE 1 : ACCUEIL & SLIDER CLAIR AVEC CARTOUCHE DE LISIBILITÉ
     ========================================= */
     .hero {
       position: relative;
@@ -338,7 +338,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 6.5rem 1.5rem 5.5rem;
+      padding: 6.5rem 1.2rem 5.5rem;
       overflow: hidden;
       background-color: #120F0F;
     }
@@ -386,12 +386,12 @@
       }
     }
 
-    /* FILTRE LÉGER & LUMINEUX */
+    /* FILTRE DIRECTIONNEL ÉLÉGANT */
     .hero-tint-overlay {
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(180deg, rgba(18, 15, 15, 0.45) 0%, rgba(168, 104, 102, 0.22) 50%, rgba(18, 15, 15, 0.75) 100%);
+      background: radial-gradient(circle at center, rgba(18, 15, 15, 0.45) 0%, rgba(18, 15, 15, 0.25) 60%, rgba(18, 15, 15, 0.7) 100%);
       pointer-events: none;
     }
 
@@ -424,10 +424,18 @@
       100% { transform: translateY(22px) rotate(1.5deg); }
     }
 
+    /* CARTOUCHE EN VERRE FUMÉ (LISIBILITÉ PARFAITE) */
     .hero-content {
-      max-width: 850px;
+      max-width: 780px;
       position: relative;
       z-index: 3;
+      background: rgba(22, 17, 17, 0.68);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(226, 201, 184, 0.28);
+      border-radius: 28px;
+      padding: 2.6rem 1.8rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
     }
 
     .live-status-badge {
@@ -442,7 +450,7 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       font-weight: 600;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       backdrop-filter: blur(12px);
     }
 
@@ -466,43 +474,44 @@
     }
 
     .hero-logo-badge {
-      width: 80px;
-      height: 80px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: var(--rose-terre);
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 1.2rem;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-serif);
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: 700;
       color: #fff;
-      border: 3px solid rgba(255, 255, 255, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       box-shadow: 0 10px 25px var(--rose-glow);
     }
 
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(2.6rem, 6.5vw, 4.4rem);
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 1.2rem;
+      line-height: 1.15;
+      margin-bottom: 1.1rem;
       color: #FFFFFF;
-      text-shadow: 0 3px 18px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.9) !important;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
     }
 
     .hero-subtitle {
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: var(--text-muted);
-      letter-spacing: 1.5px;
+      font-size: clamp(0.85rem, 1.8vw, 1rem);
+      color: var(--gold-wave);
+      letter-spacing: 1.6px;
       text-transform: uppercase;
-      max-width: 680px;
-      margin: 0 auto 2.2rem;
-      font-weight: 400;
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85) !important;
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      font-weight: 500;
+      line-height: 1.7;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
     }
 
     .hero-btn-group {
@@ -1722,6 +1731,9 @@
       .res-datetime-grid {
         grid-template-columns: 1fr;
       }
+      .hero-content {
+        padding: 2.2rem 1.3rem;
+      }
     }
 
     /* FOOTER & MINIATURES PHOTOS ADRESSES */
@@ -1945,16 +1957,16 @@
        ONGLET 1 : ACCUEIL
   ======================================================== -->
   <div id="tab-accueil" class="tab-view active">
-    <!-- HERO SECTION AVEC SLIDER NET ET RAPIDE -->
+    <!-- HERO SECTION AVEC SLIDER CLAIR & CARTOUCHE DE LISIBILITÉ -->
     <section class="hero">
-      <!-- 3 IMAGES QUI SLIDENT DE FAÇON NETTE ET CADENCÉE -->
+      <!-- 3 IMAGES QUI DÉFILENT AUTOMATIQUEMENT -->
       <div class="hero-slider-wrap">
         <div class="hero-slide-item" style="background-image: url('hero-1.jpg');"></div>
         <div class="hero-slide-item" style="background-image: url('hero-2.jpg');"></div>
         <div class="hero-slide-item" style="background-image: url('hero-3.jpg');"></div>
       </div>
 
-      <!-- Filtre allégé pour garantir la brillance de l'image -->
+      <!-- Filtre léger -->
       <div class="hero-tint-overlay"></div>
 
       <!-- Vagues latérales flottantes -->
@@ -1967,6 +1979,7 @@
         <path d="M280,0 C80,250 250,550 80,800" stroke="#A86866" stroke-width="4" stroke-linecap="round"/>
       </svg>
 
+      <!-- CARTOUCHE CENTRAL POUR UNE LISIBILITÉ OPTIMALE DU TEXTE -->
       <div class="hero-content">
         <div class="live-status-badge reveal" id="liveStatusContainer">
           <span class="status-dot" id="statusDot"></span>
@@ -2438,7 +2451,6 @@
           <div>
             <div class="card-top">
               <h3 class="dish-title">Smoothie Urban Passion</h3>
-              <span class="dotted-leader"></span>
               <span class="dish-price">4 500 F</span>
             </div>
             <p class="dish-desc">Bouye traditionnel (pain de singe sénégalais) mixé à la pulpe de fruit de la passion fraîche.</p>
