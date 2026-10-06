@@ -9,7 +9,7 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Urbanista Bistro Dakar | Point E & Plateau" />
   <meta property="og:description" content="Brunchs signatures, cuisine raffinée et cocktails au Point E et au Plateau. Découvrez notre carte." />
-  <meta property="og:image" content="urbanista-interieur.jpg" />
+  <meta property="og:image" content="hero-1.jpg" />
   <meta property="og:type" content="website" />
 
   <!-- Google Fonts -->
@@ -329,7 +329,7 @@
     .delay-4 { transition-delay: 0.4s; }
 
     /* =========================================
-       PAGE 1 : ACCUEIL
+       PAGE 1 : ACCUEIL & SLIDER EN ARRIÈRE-PLAN
     ========================================= */
     .hero {
       position: relative;
@@ -339,8 +339,59 @@
       justify-content: center;
       text-align: center;
       padding: 6.5rem 1.5rem 5.5rem;
-      background: radial-gradient(circle at center, rgba(168, 104, 102, 0.32) 0%, rgba(18, 15, 15, 0.96) 80%),
-                  url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      overflow: hidden;
+      background-color: var(--dark-bg);
+    }
+
+    /* SLIDER AUTOMATIQUE 3 IMAGES */
+    .hero-slider-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-slide-item {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1);
+      animation: heroBackgroundFade 18s infinite ease-in-out;
+    }
+
+    .hero-slide-item:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .hero-slide-item:nth-child(2) {
+      animation-delay: 6s;
+    }
+    .hero-slide-item:nth-child(3) {
+      animation-delay: 12s;
+    }
+
+    @keyframes heroBackgroundFade {
+      0% {
+        opacity: 0;
+        transform: scale(1);
+      }
+      8%, 33.33% {
+        opacity: 0.55;
+        transform: scale(1.06);
+      }
+      41.33%, 100% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+    }
+
+    /* FILTRE ROSE TERRE / NOIR POUR LISIBILITÉ */
+    .hero-tint-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(circle at center, rgba(168, 104, 102, 0.40) 0%, rgba(18, 15, 15, 0.92) 85%);
+      pointer-events: none;
     }
 
     .wave-line-left {
@@ -351,6 +402,7 @@
       height: 100%;
       pointer-events: none;
       opacity: 0.85;
+      z-index: 2;
       animation: floatWaves 14s ease-in-out infinite alternate;
     }
 
@@ -362,6 +414,7 @@
       height: 80%;
       pointer-events: none;
       opacity: 0.85;
+      z-index: 2;
       animation: floatWaves 18s ease-in-out infinite alternate-reverse;
     }
 
@@ -372,7 +425,8 @@
 
     .hero-content {
       max-width: 850px;
-      z-index: 2;
+      position: relative;
+      z-index: 3;
     }
 
     .live-status-badge {
@@ -381,7 +435,7 @@
       gap: 8px;
       padding: 0.4rem 1.1rem;
       border-radius: 50px;
-      background: rgba(36, 29, 29, 0.8);
+      background: rgba(36, 29, 29, 0.85);
       border: 1px solid rgba(168, 104, 102, 0.35);
       font-size: 0.75rem;
       letter-spacing: 1.5px;
@@ -1532,9 +1586,7 @@
       white-space: nowrap;
     }
 
-    /* ========================================================
-       MODALE DE RÉSERVATION FLUIDE & SCROLLABLE (MOBILE OPTIMIZED)
-    ======================================================== */
+    /* MODALE DE RÉSERVATION FLUIDE & SCROLLABLE */
     .modal-backdrop {
       position: fixed;
       top: 0;
@@ -1566,8 +1618,8 @@
       border-radius: 20px;
       max-width: 480px;
       width: 100%;
-      max-height: 85vh; /* Empêche de déborder */
-      overflow-y: auto;  /* Défilement fluide */
+      max-height: 85vh;
+      overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       padding: 2.2rem 1.6rem 1.8rem;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
@@ -1657,7 +1709,7 @@
 
     @media (max-width: 480px) {
       .modal-backdrop {
-        align-items: flex-end; /* Tiroir élégant depuis le bas sur smartphone */
+        align-items: flex-end;
         padding: 0;
       }
       .modal-content-box {
@@ -1666,7 +1718,7 @@
         padding: 1.8rem 1.3rem 2.2rem;
       }
       .res-datetime-grid {
-        grid-template-columns: 1fr; /* Date puis heure l'un sous l'autre */
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1891,8 +1943,19 @@
        ONGLET 1 : ACCUEIL
   ======================================================== -->
   <div id="tab-accueil" class="tab-view active">
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION AVEC SLIDER 3 IMAGES RÉELLES -->
     <section class="hero">
+      <!-- 3 IMAGES QUI DÉFILENT AUTOMATIQUEMENT EN FONDU -->
+      <div class="hero-slider-wrap">
+        <div class="hero-slide-item" style="background-image: url('hero-1.jpg');"></div>
+        <div class="hero-slide-item" style="background-image: url('hero-2.jpg');"></div>
+        <div class="hero-slide-item" style="background-image: url('hero-3.jpg');"></div>
+      </div>
+
+      <!-- Filtre protecteur de contraste -->
+      <div class="hero-tint-overlay"></div>
+
+      <!-- Vagues latérales flottantes -->
       <svg class="wave-line-left" viewBox="0 0 200 800" fill="none">
         <path d="M-50,0 C150,200 -100,500 120,800" stroke="#A86866" stroke-width="12" stroke-linecap="round"/>
         <path d="M-80,0 C120,200 -130,500 90,800" stroke="#E2C9B8" stroke-width="4" stroke-linecap="round"/>
@@ -1903,7 +1966,6 @@
       </svg>
 
       <div class="hero-content">
-        <!-- Statut Ouvert/Fermé calculé dynamiquement sur l'heure de Dakar -->
         <div class="live-status-badge reveal" id="liveStatusContainer">
           <span class="status-dot" id="statusDot"></span>
           <span id="statusText">Calcul du statut...</span>
@@ -1943,7 +2005,7 @@
       <div class="about-container">
         <div class="about-image-wrap reveal-zoom">
           <!-- PHOTO 1 : Table ronde en terrazzo et coussin tropical -->
-          <img src="urbanista-interieur.jpg" alt="Urbanista Bistro Dakar - Expérience Table Terrazzo" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'" />
+          <img src="urbanista-interieur.jpg" alt="Urbanista Bistro Dakar - Expérience Table Terrazzo" onerror="this.src='hero-1.jpg'" />
           <div class="about-badge-center">L'Art du Brunch & Bistrot</div>
         </div>
         <div class="about-text">
@@ -1960,18 +2022,17 @@
       </div>
     </section>
 
-    <!-- SECTION : NOS DEUX ADRESSES DAKAR (PHOTO 2 & PHOTO 3) -->
+    <!-- SECTION : NOS DEUX ADRESSES DAKAR -->
     <section class="branches-showcase-section">
       <span class="section-badge reveal" style="font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold-wave); font-weight:600; display:block; margin-bottom:0.5rem;">Deux Ambiances Uniques</span>
       <h2 class="section-title reveal delay-1" style="margin-bottom:1rem;">Nos Deux Restaurants</h2>
       <p class="reveal delay-2" style="color:var(--text-muted); font-size:0.9rem; max-width:600px; margin:0 auto 1.5rem;">Découvrez nos espaces conçus pour vos brunchs matinaux, déjeuners d'affaires ou soirées détendues.</p>
 
       <div class="branches-grid">
-        <!-- BRANCHE 1 : POINT E (PHOTO 2) -->
+        <!-- BRANCHE 1 : POINT E -->
         <div class="branch-card-showcase reveal delay-1">
           <div class="branch-img-container">
-            <!-- PHOTO 2 : Vue d'ensemble Point E avec chaises en cannage -->
-            <img src="urbanista-pointe.jpg" alt="Urbanista Point E - Salle et Chaises en Cannage" onerror="this.src='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80'" />
+            <img src="urbanista-pointe.jpg" alt="Urbanista Point E - Salle et Chaises en Cannage" onerror="this.src='hero-1.jpg'" />
             <div class="branch-img-badge">Point E · Rue 7</div>
           </div>
           <div class="branch-body">
@@ -1990,11 +2051,10 @@
           </div>
         </div>
 
-        <!-- BRANCHE 2 : PLATEAU (PHOTO 3) -->
+        <!-- BRANCHE 2 : PLATEAU -->
         <div class="branch-card-showcase reveal delay-2">
           <div class="branch-img-container">
-            <!-- PHOTO 3 : Vue Plateau avec arches roses et velours -->
-            <img src="urbanista-plateau.jpg" alt="Urbanista Plateau - Arches Roses et Fauteuils Velours" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'" />
+            <img src="urbanista-plateau.jpg" alt="Urbanista Plateau - Arches Roses et Fauteuils Velours" onerror="this.src='hero-3.jpg'" />
             <div class="branch-img-badge">Centre-Ville · Plateau</div>
           </div>
           <div class="branch-body">
@@ -2329,7 +2389,6 @@
           <div>
             <div class="card-top">
               <h3 class="dish-title">Risotto aux Gambas</h3>
-              <span class="dotted-leader"></span>
               <span class="dish-price">17 500 F</span>
             </div>
             <p class="dish-desc">Risotto crémeux lié au parmesan et persil, garni de gambas poêlées à l'ail.</p>
@@ -2520,9 +2579,7 @@
     <button class="floating-bar-btn" onclick="switchTab('commande')">Voir mon ticket →</button>
   </div>
 
-  <!-- ========================================================
-       MODALE DE RÉSERVATION DE TABLE MOBILE-FRIENDLY & SCROLLABLE
-  ======================================================== -->
+  <!-- MODALE DE RÉSERVATION DE TABLE MOBILE-FRIENDLY & SCROLLABLE -->
   <div class="modal-backdrop" id="reservationModal" onclick="closeReservationModal(event)">
     <div class="modal-content-box" onclick="event.stopPropagation()">
       <button type="button" class="modal-close-btn" onclick="closeReservationModal()">&times;</button>
@@ -2593,10 +2650,10 @@
         <p style="margin-top:0.8rem;">📸 <a href="https://www.instagram.com/urbanista.bistro" target="_blank" style="color:var(--gold-wave);">Instagram : @urbanista.bistro</a></p>
       </div>
 
-      <!-- ADRESSE 1 : POINT E (PHOTO 2) -->
+      <!-- ADRESSE 1 : POINT E -->
       <div class="contact-col reveal delay-1">
         <div class="footer-thumb-box">
-          <img src="urbanista-pointe.jpg" alt="Urbanista Point E Dakar" onerror="this.src='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80'" />
+          <img src="urbanista-pointe.jpg" alt="Urbanista Point E Dakar" onerror="this.src='hero-1.jpg'" />
         </div>
         <h5>Urbanista Point E</h5>
         <p>📍 Rue 7, Quartier Point E, Dakar</p>
@@ -2608,10 +2665,10 @@
         </a>
       </div>
 
-      <!-- ADRESSE 2 : PLATEAU (PHOTO 3) -->
+      <!-- ADRESSE 2 : PLATEAU -->
       <div class="contact-col reveal delay-2">
         <div class="footer-thumb-box">
-          <img src="urbanista-plateau.jpg" alt="Urbanista Plateau Dakar" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80'" />
+          <img src="urbanista-plateau.jpg" alt="Urbanista Plateau Dakar" onerror="this.src='hero-3.jpg'" />
         </div>
         <h5>Urbanista Plateau</h5>
         <p>📍 Quartier Plateau, Centre-Ville, Dakar</p>
